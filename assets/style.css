@@ -1,0 +1,189 @@
+/* VELDORIQ – Styles Landingpage
+   Farben, Schriften und Regeln: 03_Marke/Styleguide.md (Stand 19.10.2026) */
+
+/* ---------- Schriften (selbst gehostet, SIL OFL) ---------- */
+@font-face { font-family: "Bitter"; font-weight: 500; font-style: normal; font-display: swap;
+  src: url("fonts/bitter-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Bitter"; font-weight: 700; font-style: normal; font-display: swap;
+  src: url("fonts/bitter-latin-700-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 400; font-style: normal; font-display: swap;
+  src: url("fonts/source-sans-3-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Source Sans 3"; font-weight: 600; font-style: normal; font-display: swap;
+  src: url("fonts/source-sans-3-latin-600-normal.woff2") format("woff2"); }
+
+/* ---------- Markenfarben ---------- */
+:root {
+  --waldgruen: #2E4A3B;   /* Primär: Logo, Kopfzeile, Überschriften */
+  --seeblau:   #24557A;   /* Sekundär: Links, Maße, kleine Elemente */
+  --rost:      #B4521E;   /* Akzent: nur Handlungsknöpfe, max. 1 je Ansicht */
+  --leinen:    #F6F2EA;   /* Hintergrund */
+  --anthrazit: #22272A;   /* Text */
+  --holz:      #D8C3A0;   /* Flächen, nie Textfarbe */
+  --weiss:     #FFFFFF;
+  --linie:     #E4DCCD;
+
+  --schrift-titel: "Bitter", Georgia, serif;
+  --schrift-text: "Source Sans 3", Arial, sans-serif;
+
+  --breite: 1120px;
+  --radius: 10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--leinen);
+  color: var(--anthrazit);
+  font-family: var(--schrift-text);
+  font-size: 1.0625rem;      /* 17 px, min. 16 px laut Styleguide */
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: var(--seeblau); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--seeblau); outline-offset: 3px; }
+
+h1, h2, h3 {
+  font-family: var(--schrift-titel);
+  color: var(--waldgruen);
+  line-height: 1.2;
+  margin: 0 0 .6em;
+}
+h1 { font-weight: 700; font-size: clamp(2rem, 4.2vw, 3.1rem); letter-spacing: -.01em; }
+h2 { font-weight: 700; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+h3 { font-weight: 500; font-size: 1.25rem; }
+p { margin: 0 0 1em; }
+
+.wrap { width: 100%; max-width: var(--breite); margin: 0 auto; padding: 0 20px; }
+.abschnitt { padding: clamp(56px, 8vw, 96px) 0; }
+.abschnitt--weiss { background: var(--weiss); }
+.kicker {
+  font-family: var(--schrift-text);
+  font-weight: 600;
+  color: var(--seeblau);
+  font-size: 1rem;
+  margin: 0 0 .75em;
+}
+.lead { font-size: 1.2rem; max-width: 34em; }
+
+/* ---------- Kopfzeile ---------- */
+.kopf { background: var(--leinen); border-bottom: 1px solid var(--linie); }
+.kopf .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+.kopf__logo img { width: 168px; height: auto; }   /* Mindestbreite Wortmarke 120 px */
+.kopf__hinweis { font-size: .95rem; color: var(--anthrazit); }
+
+/* ---------- Knopf (Rost) ---------- */
+.knopf {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5em;
+  background: var(--rost); color: var(--weiss);
+  font-family: var(--schrift-text); font-weight: 600; font-size: 1.1rem;
+  text-decoration: none;
+  padding: 15px 30px; border-radius: 999px; border: 0;
+  min-height: 52px; cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.knopf:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(180, 82, 30, .28); }
+.knopf__pfeil { transition: transform .15s ease; }
+.knopf:hover .knopf__pfeil { transform: translateX(3px); }
+
+/* ---------- Preis ---------- */
+.preis { margin: 0 0 1.4em; }
+.preis__betrag { font-family: var(--schrift-titel); font-weight: 700; font-size: 2.2rem; color: var(--anthrazit); line-height: 1; }
+.preis__info { display: block; font-size: .95rem; margin-top: .45em; }
+
+/* ---------- Kopfbereich ---------- */
+.hero { padding: clamp(32px, 6vw, 72px) 0 clamp(56px, 8vw, 96px); }
+.hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero__bild img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
+.hero__fakten { list-style: none; padding: 0; margin: 0 0 1.8em; display: flex; flex-wrap: wrap; gap: 8px; }
+.hero__fakten li {
+  background: var(--weiss); border: 1px solid var(--linie); border-radius: 999px;
+  padding: 6px 14px; font-weight: 600; font-size: .98rem;
+}
+
+/* ---------- Vorteile ---------- */
+.zweispaltig { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.zweispaltig--umgekehrt > :first-child { order: 2; }
+.bild-rund { border-radius: var(--radius); }
+.vorteile { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.vorteile li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; }
+.vorteile li::before {
+  content: ""; width: 28px; height: 28px; border-radius: 50%; margin-top: 1px;
+  background: var(--waldgruen) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23F6F2EA' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat;
+}
+.vorteile strong { display: block; font-weight: 600; }
+
+/* ---------- Galerie ---------- */
+.galerie { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 760px; margin: 0 auto; }
+.galerie__gross { background: var(--weiss); border-radius: var(--radius); border: 1px solid var(--linie); overflow: hidden; }
+.galerie__gross img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
+.galerie__leiste { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.galerie__leiste button {
+  padding: 0; border: 2px solid var(--linie); border-radius: 8px; background: var(--weiss);
+  cursor: pointer; overflow: hidden;
+}
+.galerie__leiste button[aria-pressed="true"] { border-color: var(--waldgruen); }
+.galerie__leiste img { aspect-ratio: 1 / 1; object-fit: contain; }
+.galerie__titel { text-align: center; font-size: .95rem; margin: 0; }
+.zentriert { text-align: center; }
+.zentriert .lead { margin-left: auto; margin-right: auto; }
+
+/* ---------- Maße & Daten ---------- */
+.daten { width: 100%; border-collapse: collapse; background: var(--weiss); border-radius: var(--radius); overflow: hidden; }
+.daten th, .daten td { text-align: left; vertical-align: top; padding: 11px 16px; border-bottom: 1px solid var(--linie); font-size: 1rem; }
+.daten th { font-weight: 600; width: 44%; }
+.daten tr:last-child th, .daten tr:last-child td { border-bottom: 0; }
+.massbild { background: var(--weiss); border-radius: var(--radius); border: 1px solid var(--linie); }
+
+/* ---------- Unterwegs / Lieferumfang ---------- */
+.zahlen { display: flex; flex-wrap: wrap; gap: 28px; margin: 1.2em 0 1.4em; }
+.zahl__wert { font-family: var(--schrift-titel); font-weight: 700; font-size: 1.9rem; color: var(--seeblau); line-height: 1.1; }
+.zahl__text { font-size: .95rem; }
+.liste-einfach { margin: 0 0 1em; padding-left: 1.2em; }
+.liste-einfach li { margin-bottom: .35em; }
+
+/* ---------- Werte ---------- */
+.werte { background: var(--holz); }
+.werte__raster { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+.wert { background: var(--leinen); border-radius: var(--radius); padding: 26px 24px; }
+.wert h3 { margin-bottom: .4em; }
+.wert p { margin: 0; }
+.werte__fuss { margin: 28px 0 0; font-weight: 600; }
+
+/* ---------- Abschluss ---------- */
+.abschluss .zweispaltig { align-items: center; }
+
+/* ---------- Fußzeile ---------- */
+.fuss { background: var(--waldgruen); color: var(--leinen); padding: 48px 0 40px; font-size: .95rem; }
+.fuss a { color: var(--leinen); }
+.fuss .wrap { display: grid; gap: 22px; }
+.fuss__logo { width: 150px; }
+.fuss__links { display: flex; flex-wrap: wrap; gap: 8px 24px; list-style: none; margin: 0; padding: 0; }
+.fuss__hinweis { margin: 0; max-width: 46em; }
+
+/* ---------- Unterseiten (Rechtstexte) ---------- */
+.textseite { padding: clamp(40px, 6vw, 72px) 0; }
+.textseite .wrap { max-width: 760px; }
+.platzhalter {
+  background: var(--holz); border-radius: var(--radius); padding: 18px 20px; margin: 0 0 28px; font-weight: 600;
+}
+
+/* ---------- Handy ---------- */
+@media (max-width: 860px) {
+  .hero .wrap, .zweispaltig { grid-template-columns: 1fr; }
+  .hero__bild { order: -1; }
+  .zweispaltig--umgekehrt > :first-child { order: 0; }
+  .werte__raster { grid-template-columns: 1fr; }
+  .kopf__hinweis { display: none; }
+}
+@media (max-width: 480px) {
+  .knopf { width: 100%; }
+  .galerie__leiste { gap: 6px; }
+  .daten th, .daten td { padding: 10px 12px; }
+  .daten th { width: 48%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .knopf, .knopf__pfeil { transition: none; }
+}
