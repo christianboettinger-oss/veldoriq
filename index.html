@@ -31,24 +31,25 @@
     <div class="wrap">
       <div>
         <p class="kicker">Dein Projekt. Draußen gemacht.</p>
-        <h1 id="titel">VELDORIQ Campingstuhl Kompakt – faltbar, mit Tragetasche</h1>
-        <p class="lead">Der faltbare Campingstuhl für deine Pause auf dem Campingplatz oder beim Grillabend: ohne Werkzeug aufklappen, hinsetzen und danach in der Tasche mit Schultergurt mitnehmen.</p>
+        <p class="hero__claim" aria-hidden="true">Dein Platz zum Abschalten.</p>
+        <h1 id="titel" class="hero__produkt">VELDORIQ Campingstuhl Kompakt – faltbar, mit Tragetasche</h1>
+        <p class="lead">Ohne Werkzeug aufklappen, hinsetzen, Getränk in die Armlehne – und danach in der Tasche mit Schultergurt mitnehmen.</p>
         <ul class="hero__fakten" aria-label="Wichtigste Daten">
-          <li>3 kg inkl. Tasche</li>
-          <li>Packmaß 88 × 18 × 18 cm</li>
+          <li>Keine Montage</li>
           <li>bis 120 kg</li>
-          <li>Sitzhöhe 40 cm</li>
+          <li>inkl. Tragetasche</li>
+          <li>3 kg inkl. Tasche</li>
         </ul>
         <p class="preis">
           <span class="preis__betrag">26,97 €</span>
           <span class="preis__info">inkl. MwSt., zzgl. 4,90 € Versand · ab 40,00 € versandkostenfrei</span>
         </p>
-        <a class="knopf js-produkt-link" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
+        <a class="knopf js-produkt-link js-cta" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
       </div>
       <div class="hero__bild">
         <img src="assets/bilder/11-emotion-see-4x5.webp"
              srcset="assets/bilder/11-emotion-see-4x5-640.webp 640w, assets/bilder/11-emotion-see-4x5.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 46vw"
+             sizes="(max-width: 860px) 100vw, 44vw"
              width="1024" height="1280"
              alt="Zwei Personen sitzen in der Abendsonne am Seeufer auf schwarzen Campingstühlen, von hinten gesehen"
              fetchpriority="high">
@@ -68,11 +69,15 @@
           <li><span><strong>Belastbar bis 120 kg</strong>Stahlgestell mit Ø 19 mm, pulverbeschichtet</span></li>
           <li><span><strong>Über der Schulter tragen</strong>Tragetasche mit Schultergurt, 3 kg inkl. Tasche</span></li>
         </ul>
+        <div class="cta-zeile">
+          <a class="knopf js-produkt-link js-cta" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
+          <span class="cta-zeile__preis">26,97 € inkl. MwSt.</span>
+        </div>
       </div>
       <div>
         <img class="bild-rund" src="assets/bilder/09-detail-getraenkehalter.webp"
              srcset="assets/bilder/09-detail-getraenkehalter-640.webp 640w, assets/bilder/09-detail-getraenkehalter.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 46vw" width="1024" height="1024" loading="lazy"
+             sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1024" loading="lazy"
              alt="Nahaufnahme: Getränkehalter aus Netz mit Kunststoffring an der Armlehne">
       </div>
     </div>
@@ -83,7 +88,6 @@
     <div class="wrap">
       <div class="zentriert">
         <h2 id="ansichten">Von allen Seiten</h2>
-        <p class="lead">Schau dir den Stuhl genau an – aufgebaut und verpackt.</p>
       </div>
       <div class="galerie">
         <div class="galerie__gross">
@@ -102,6 +106,8 @@
             <img src="assets/bilder/04-hinten-320.webp" width="320" height="320" alt="Von hinten" loading="lazy"></button>
           <button type="button" aria-pressed="false" data-bild="05-verpackt" data-titel="Verpackt in der Tragetasche" data-alt="Campingstuhl Kompakt verpackt in der schwarzen Tragetasche">
             <img src="assets/bilder/05-verpackt-320.webp" width="320" height="320" alt="Verpackt" loading="lazy"></button>
+          <button type="button" aria-pressed="false" data-bild="08-lieferumfang" data-titel="Lieferumfang: Stuhl und Tragetasche" data-alt="Lieferumfang: ein Campingstuhl und eine Tragetasche mit Schultergurt">
+            <img src="assets/bilder/08-lieferumfang-320.webp" width="320" height="320" alt="Lieferumfang" loading="lazy"></button>
         </div>
       </div>
     </div>
@@ -113,7 +119,7 @@
       <div>
         <img class="bild-rund" src="assets/bilder/10-szene-campingplatz-4x5.webp"
              srcset="assets/bilder/10-szene-campingplatz-4x5-640.webp 640w, assets/bilder/10-szene-campingplatz-4x5.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 46vw" width="1024" height="1280" loading="lazy"
+             sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1280" loading="lazy"
              alt="Pause auf dem Campingplatz: Eine Frau sitzt vor dem Zelt auf dem Campingstuhl, ein Mann sitzt daneben">
       </div>
       <div>
@@ -129,79 +135,73 @@
   <section class="abschnitt" aria-labelledby="daten">
     <div class="wrap">
       <h2 id="daten">Maße &amp; Daten</h2>
-      <div class="zweispaltig" style="align-items:start">
+      <div class="zweispaltig zweispaltig--oben">
         <div>
           <img class="massbild" src="assets/bilder/06-massbild.webp"
                srcset="assets/bilder/06-massbild-640.webp 640w, assets/bilder/06-massbild.webp 1024w"
-               sizes="(max-width: 860px) 100vw, 46vw" width="1024" height="1024" loading="lazy"
+               sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1024" loading="lazy"
                alt="Maßbild: Breite 71 cm, Tiefe 51 cm, Höhe 91 cm, Sitzhöhe 40 cm; 3 kg inkl. Tasche, bis 120 kg, Packmaß 88 × 18 × 18 cm">
         </div>
-        <table class="daten">
-          <caption class="visually-hidden" style="position:absolute;left:-9999px">Technische Daten Campingstuhl Kompakt</caption>
-          <tbody>
-            <tr><th scope="row">Bauart</th><td>Klappstuhl mit X-Gestell und Armlehnen, wird nur aufgeklappt</td></tr>
-            <tr><th scope="row">Aufbau</th><td>aufklappen, keine Montage, kein Werkzeug</td></tr>
-            <tr><th scope="row">Maße aufgebaut (B × T × H)</th><td>71 × 51 × 91 cm</td></tr>
-            <tr><th scope="row">Sitzhöhe (aufgebaut)</th><td>40 cm</td></tr>
-            <tr><th scope="row">Sitzfläche (B × T, aufgebaut)</th><td>50 × 40 cm</td></tr>
-            <tr><th scope="row">Sitzfläche (Ausführung)</th><td>nicht gepolstert, gespannter Bezug</td></tr>
-            <tr><th scope="row">Rückenlehne</th><td>fest, klappt beim Aufklappen mit auf, nicht verstellbar</td></tr>
-            <tr><th scope="row">Packmaß (L × B × H), zusammengeklappt in der Tasche</th><td>88 × 18 × 18 cm</td></tr>
-            <tr><th scope="row">Gewicht (inkl. Tasche)</th><td>3 kg</td></tr>
-            <tr><th scope="row">Belastbarkeit</th><td>120 kg</td></tr>
-            <tr><th scope="row">Gestell</th><td>Stahl, Ø 19 mm, pulverbeschichtet</td></tr>
-            <tr><th scope="row">Bezug</th><td>Polyester-Gewebe, wasserabweisend, nicht wasserdicht</td></tr>
-            <tr><th scope="row">Armlehnen</th><td>Stoff</td></tr>
-            <tr><th scope="row">Getränkehalter</th><td>2 × Netz mit Kunststoffring, in der linken und rechten Armlehne</td></tr>
-            <tr><th scope="row">Farbe (Bezug, Gestell, Tasche)</th><td>Schwarz</td></tr>
-          </tbody>
-        </table>
+        <div>
+          <table class="daten">
+            <caption class="unsichtbar">Wichtigste Daten Campingstuhl Kompakt</caption>
+            <tbody>
+              <tr><th scope="row">Maße aufgebaut (B × T × H)</th><td>71 × 51 × 91 cm</td></tr>
+              <tr><th scope="row">Sitzhöhe (aufgebaut)</th><td>40 cm</td></tr>
+              <tr><th scope="row">Packmaß (L × B × H), in der Tasche</th><td>88 × 18 × 18 cm</td></tr>
+              <tr><th scope="row">Gewicht (inkl. Tasche)</th><td>3 kg</td></tr>
+              <tr><th scope="row">Belastbarkeit</th><td>120 kg</td></tr>
+              <tr><th scope="row">Sitzfläche (Ausführung)</th><td>nicht gepolstert, gespannter Bezug</td></tr>
+              <tr><th scope="row">Rückenlehne</th><td>fest, klappt beim Aufklappen mit auf, nicht verstellbar</td></tr>
+              <tr><th scope="row">Bezug</th><td>Polyester-Gewebe, wasserabweisend, nicht wasserdicht</td></tr>
+            </tbody>
+          </table>
+          <details class="mehr">
+            <summary>Alle Daten anzeigen</summary>
+            <table class="daten">
+              <caption class="unsichtbar">Weitere Daten Campingstuhl Kompakt</caption>
+              <tbody>
+                <tr><th scope="row">Bauart</th><td>Klappstuhl mit X-Gestell und Armlehnen, wird nur aufgeklappt</td></tr>
+                <tr><th scope="row">Aufbau</th><td>aufklappen, keine Montage, kein Werkzeug</td></tr>
+                <tr><th scope="row">Sitzfläche (B × T, aufgebaut)</th><td>50 × 40 cm</td></tr>
+                <tr><th scope="row">Gestell</th><td>Stahl, Ø 19 mm, pulverbeschichtet</td></tr>
+                <tr><th scope="row">Armlehnen</th><td>Stoff</td></tr>
+                <tr><th scope="row">Getränkehalter</th><td>2 × Netz mit Kunststoffring, in der linken und rechten Armlehne</td></tr>
+                <tr><th scope="row">Farbe (Bezug, Gestell, Tasche)</th><td>Schwarz</td></tr>
+              </tbody>
+            </table>
+          </details>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 6 Unterwegs -->
+  <!-- 6 Unterwegs & Lieferumfang -->
   <section class="abschnitt abschnitt--weiss" aria-labelledby="unterwegs">
     <div class="wrap zweispaltig">
       <div>
-        <h2 id="unterwegs">Unterwegs</h2>
-        <p>Zusammengeklappt steckt der Stuhl in seiner Tragetasche mit Schultergurt.</p>
+        <h2 id="unterwegs">Unterwegs &amp; Lieferumfang</h2>
         <div class="zahlen">
           <div><div class="zahl__wert">88 × 18 × 18 cm</div><div class="zahl__text">Packmaß in der Tasche</div></div>
           <div><div class="zahl__wert">3 kg</div><div class="zahl__text">Gewicht inkl. Tasche</div></div>
         </div>
         <p>Zusammengeklappt ist der Stuhl 88 cm lang – miss kurz nach, wie viel Platz in deinem Kofferraum ist.</p>
-      </div>
-      <div>
-        <img class="bild-rund" src="assets/bilder/07-groessenvergleich.webp"
-             srcset="assets/bilder/07-groessenvergleich-640.webp 640w, assets/bilder/07-groessenvergleich.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 46vw" width="1024" height="1024" loading="lazy"
-             alt="Der Stuhl in seiner Tragetasche liegt neben einem Rucksack im Kofferraum eines Autos">
-      </div>
-    </div>
-  </section>
-
-  <!-- 7 Lieferumfang -->
-  <section class="abschnitt" aria-labelledby="lieferumfang">
-    <div class="wrap zweispaltig zweispaltig--umgekehrt">
-      <div>
-        <img class="bild-rund massbild" src="assets/bilder/08-lieferumfang.webp"
-             srcset="assets/bilder/08-lieferumfang-640.webp 640w, assets/bilder/08-lieferumfang.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 46vw" width="1024" height="1024" loading="lazy"
-             alt="Lieferumfang: ein Campingstuhl und eine Tragetasche mit Schultergurt">
-      </div>
-      <div>
-        <h2 id="lieferumfang">Lieferumfang</h2>
-        <p>Das bekommst du:</p>
+        <h3>Das bekommst du</h3>
         <ul class="liste-einfach">
           <li>1 × Stuhl</li>
           <li>1 × Tragetasche mit Schultergurt</li>
         </ul>
       </div>
+      <div>
+        <img class="bild-rund" src="assets/bilder/07-groessenvergleich.webp"
+             srcset="assets/bilder/07-groessenvergleich-640.webp 640w, assets/bilder/07-groessenvergleich.webp 1024w"
+             sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1024" loading="lazy"
+             alt="Der Stuhl in seiner Tragetasche liegt neben einem Rucksack im Kofferraum eines Autos">
+      </div>
     </div>
   </section>
 
-  <!-- 8 Werte -->
+  <!-- 7 Werte -->
   <section class="abschnitt werte" aria-labelledby="werte">
     <div class="wrap">
       <h2 id="werte">Darauf kannst du dich verlassen</h2>
@@ -223,29 +223,39 @@
     </div>
   </section>
 
-  <!-- 9 Abschluss -->
+  <!-- 8 Abschluss -->
   <section class="abschnitt abschluss" aria-labelledby="abschluss">
     <div class="wrap zweispaltig">
       <div>
-        <p class="kicker">Dein Platz zum Abschalten.</p>
         <h2 id="abschluss">VELDORIQ Campingstuhl Kompakt</h2>
-        <p>Aufklappen, hinsetzen, Getränk in die Armlehne. Zusammengeklappt in der Tasche über die Schulter.</p>
+        <ul class="hero__fakten" aria-label="Kurz zusammengefasst">
+          <li>Packmaß 88 × 18 × 18 cm</li>
+          <li>3 kg inkl. Tasche</li>
+          <li>bis 120 kg</li>
+          <li>Sitzhöhe 40 cm</li>
+        </ul>
         <p class="preis">
           <span class="preis__betrag">26,97 €</span>
           <span class="preis__info">inkl. MwSt., zzgl. 4,90 € Versand · ab 40,00 € versandkostenfrei</span>
         </p>
-        <a class="knopf js-produkt-link" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
+        <a class="knopf js-produkt-link js-cta" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
       </div>
       <div>
         <img class="bild-rund" src="assets/bilder/11-emotion-see-1x1.webp"
              srcset="assets/bilder/11-emotion-see-1x1-640.webp 640w, assets/bilder/11-emotion-see-1x1.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 46vw" width="1024" height="1024" loading="lazy"
+             sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1024" loading="lazy"
              alt="Zwei Personen auf Campingstühlen am Seeufer in der Abendsonne">
       </div>
     </div>
   </section>
 
 </main>
+
+<!-- Fester Knopf am Handy: nur sichtbar, wenn kein anderer Knopf im Bild ist (max. 1 Rost-Knopf je Ansicht) -->
+<div class="kaufleiste" id="kaufleiste" hidden>
+  <div class="kaufleiste__preis"><strong>26,97 €</strong><span>zzgl. 4,90 € Versand</span></div>
+  <a class="knopf js-produkt-link" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
+</div>
 
 <footer class="fuss">
   <div class="wrap">
@@ -278,6 +288,20 @@
       document.querySelectorAll(".galerie__leiste button").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
     });
   });
+
+  // Kaufleiste (nur Handy): ausblenden, sobald ein anderer Knopf „Zum Produkt“ sichtbar ist
+  const leiste = document.getElementById("kaufleiste");
+  const handy = window.matchMedia("(max-width: 860px)");
+  const sichtbar = new Set();
+  const aktualisieren = () => { leiste.hidden = !handy.matches || sichtbar.size > 0; };
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((eintraege) => {
+      eintraege.forEach((e) => e.isIntersecting ? sichtbar.add(e.target) : sichtbar.delete(e.target));
+      aktualisieren();
+    });
+    document.querySelectorAll(".js-cta").forEach((k) => io.observe(k));
+    handy.addEventListener("change", aktualisieren);
+  }
 </script>
 </body>
 </html>

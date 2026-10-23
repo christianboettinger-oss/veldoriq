@@ -56,7 +56,7 @@ h3 { font-weight: 500; font-size: 1.25rem; }
 p { margin: 0 0 1em; }
 
 .wrap { width: 100%; max-width: var(--breite); margin: 0 auto; padding: 0 20px; }
-.abschnitt { padding: clamp(56px, 8vw, 96px) 0; }
+.abschnitt { padding: clamp(40px, 6vw, 72px) 0; }
 .abschnitt--weiss { background: var(--weiss); }
 .kicker {
   font-family: var(--schrift-text);
@@ -93,7 +93,7 @@ p { margin: 0 0 1em; }
 .preis__info { display: block; font-size: .95rem; margin-top: .45em; }
 
 /* ---------- Kopfbereich ---------- */
-.hero { padding: clamp(32px, 6vw, 72px) 0 clamp(56px, 8vw, 96px); }
+.hero { padding: clamp(24px, 4vw, 48px) 0 clamp(40px, 6vw, 72px); }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
 .hero__bild img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); }
 .hero__fakten { list-style: none; padding: 0; margin: 0 0 1.8em; display: flex; flex-wrap: wrap; gap: 8px; }
@@ -101,6 +101,13 @@ p { margin: 0 0 1em; }
   background: var(--weiss); border: 1px solid var(--linie); border-radius: 999px;
   padding: 6px 14px; font-weight: 600; font-size: .98rem;
 }
+
+.hero__claim {
+  font-family: var(--schrift-titel); font-weight: 700; color: var(--waldgruen);
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem); line-height: 1.1; letter-spacing: -.01em; margin: 0 0 .35em;
+}
+.hero__produkt { font-family: var(--schrift-text); font-weight: 600; color: var(--anthrazit); font-size: 1.25rem; line-height: 1.35; margin: 0 0 .7em; }
+.hero__fakten li::before { content: "✓ "; color: var(--waldgruen); font-weight: 600; }
 
 /* ---------- Vorteile ---------- */
 .zweispaltig { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
@@ -114,11 +121,14 @@ p { margin: 0 0 1em; }
 }
 .vorteile strong { display: block; font-weight: 600; }
 
+.cta-zeile { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 28px; }
+.cta-zeile__preis { font-weight: 600; }
+
 /* ---------- Galerie ---------- */
-.galerie { display: grid; grid-template-columns: 1fr; gap: 16px; max-width: 760px; margin: 0 auto; }
+.galerie { display: grid; grid-template-columns: 1fr; gap: 14px; max-width: 680px; margin: 0 auto; }
 .galerie__gross { background: var(--weiss); border-radius: var(--radius); border: 1px solid var(--linie); overflow: hidden; }
 .galerie__gross img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
-.galerie__leiste { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.galerie__leiste { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .galerie__leiste button {
   padding: 0; border: 2px solid var(--linie); border-radius: 8px; background: var(--weiss);
   cursor: pointer; overflow: hidden;
@@ -131,15 +141,25 @@ p { margin: 0 0 1em; }
 
 /* ---------- Maße & Daten ---------- */
 .daten { width: 100%; border-collapse: collapse; background: var(--weiss); border-radius: var(--radius); overflow: hidden; }
-.daten th, .daten td { text-align: left; vertical-align: top; padding: 11px 16px; border-bottom: 1px solid var(--linie); font-size: 1rem; }
+.daten th, .daten td { text-align: left; vertical-align: top; padding: 9px 14px; border-bottom: 1px solid var(--linie); font-size: 1rem; }
 .daten th { font-weight: 600; width: 44%; }
 .daten tr:last-child th, .daten tr:last-child td { border-bottom: 0; }
+.zweispaltig--oben { align-items: start; }
+.mehr { margin-top: 12px; }
+.mehr summary {
+  cursor: pointer; font-weight: 600; color: var(--seeblau); padding: 10px 0; list-style: none;
+}
+.mehr summary::-webkit-details-marker { display: none; }
+.mehr summary::before { content: "+ "; }
+.mehr[open] summary::before { content: "– "; }
+.unsichtbar { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .massbild { background: var(--weiss); border-radius: var(--radius); border: 1px solid var(--linie); }
 
 /* ---------- Unterwegs / Lieferumfang ---------- */
-.zahlen { display: flex; flex-wrap: wrap; gap: 28px; margin: 1.2em 0 1.4em; }
+.zahlen { display: flex; flex-wrap: wrap; gap: 28px; margin: .4em 0 1.2em; }
 .zahl__wert { font-family: var(--schrift-titel); font-weight: 700; font-size: 1.9rem; color: var(--seeblau); line-height: 1.1; }
 .zahl__text { font-size: .95rem; }
+h3 + .liste-einfach { margin-top: 0; }
 .liste-einfach { margin: 0 0 1em; padding-left: 1.2em; }
 .liste-einfach li { margin-bottom: .35em; }
 
@@ -162,6 +182,19 @@ p { margin: 0 0 1em; }
 .fuss__links { display: flex; flex-wrap: wrap; gap: 8px 24px; list-style: none; margin: 0; padding: 0; }
 .fuss__hinweis { margin: 0; max-width: 46em; }
 
+/* ---------- Kaufleiste (nur Handy) ---------- */
+.kaufleiste {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--leinen); border-top: 1px solid var(--linie);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  box-shadow: 0 -4px 16px rgba(34, 39, 42, .08);
+}
+.kaufleiste[hidden] { display: none; }
+.kaufleiste__preis { display: flex; flex-direction: column; line-height: 1.2; font-size: .9rem; }
+.kaufleiste__preis strong { font-size: 1.2rem; }
+.kaufleiste .knopf { width: auto; padding: 12px 22px; min-height: 48px; font-size: 1rem; }
+
 /* ---------- Unterseiten (Rechtstexte) ---------- */
 .textseite { padding: clamp(40px, 6vw, 72px) 0; }
 .textseite .wrap { max-width: 760px; }
@@ -176,6 +209,7 @@ p { margin: 0 0 1em; }
   .zweispaltig--umgekehrt > :first-child { order: 0; }
   .werte__raster { grid-template-columns: 1fr; }
   .kopf__hinweis { display: none; }
+  .fuss { padding-bottom: 110px; }
 }
 @media (max-width: 480px) {
   .knopf { width: 100%; }
