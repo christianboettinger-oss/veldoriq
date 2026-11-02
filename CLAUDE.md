@@ -35,22 +35,28 @@ Quelle der Regeln: Projektordner `03_Marke/Styleguide.md`, `03_Marke/Tonalitaet.
 
 ## Daten
 - Texte nur aus freigegebenen Dateien: `02_E-Commerce_Vertrieb/Produkttexte.md`, `Produktdaten.md`, `Preise.md`. Nichts erfinden – fehlt etwas: „folgt“ bzw. ⚠️ und Rückfrage.
-- Bilder nur freigegebene Varianten laut `02_E-Commerce_Vertrieb/Produktbilder/Bildliste.md`, als WebP (1024 / 640 / 320 px) in `assets/bilder/`.
+- Bilder nur freigegebene Varianten laut `02_E-Commerce_Vertrieb/Produktbilder/Bildliste.md`, und zwar die **KI-gekennzeichneten Kopien** aus dem Unterordner „AI-Tag“ (geteiltes Drive „02 Produktbilder“), als WebP (1024 / 640 / 320 px) in `assets/bilder/<kompakt|komfort>/`.
+- Pflichttexte beim Preis (`06_Shop/Rechtstexte.md`, Abschnitt 5): „inkl. MwSt., zzgl. Versandkosten“ (Link auf `versand-zahlung.html`) + „Lieferzeit: 1–3 Werktage“.
 - Versand: 4,90 €, ab 40,00 € Warenkorbwert versandkostenfrei.
+- Rechtstexte 1:1 aus `04_Website_Landingpage/Rechtstexte.md` und `06_Shop/Rechtstexte.md` (Abschnitt 4).
 
 ## Aufbau
 ```
-index.html          Landingpage 01 Campingstuhl Kompakt
-impressum.html      Platzhalter (Klärung GF)
-datenschutz.html    Platzhalter (Klärung GF)
+index.html                  Landingpage 01 Campingstuhl Kompakt
+campingstuhl-komfort.html   Landingpage 02 Campingstuhl Komfort
+versand-zahlung.html        Versand & Zahlung (06_Shop/Rechtstexte.md, Abschnitt 4)
+impressum.html              Impressum (Rechtstexte.md, fiktive Firmendaten)
+datenschutz.html            Datenschutz (Rechtstexte.md)
 assets/style.css    alle Styles, Farben als CSS-Variablen
+assets/seite.js     Galerie, Knopf „Zum Produkt“, Kaufleiste Handy
 assets/fonts/       woff2 + Lizenzen
 assets/logo/        SVG-Logos
-assets/bilder/      WebP-Bilder
+assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/)
 ```
 - Reines HTML/CSS, wenig JavaScript, kein Build-Schritt, keine Frameworks
-- Knopf „Zum Produkt“: Ziel in `index.html` → `PRODUKT_URL` (leer, bis Shop 06 steht)
-- `noindex`, bis GF die Rechtstexte freigibt
+- Beide Produktseiten haben denselben Aufbau (Kopfbereich, Vorteile + Knopf, Galerie, In der Praxis, Maße & Daten, Unterwegs & Lieferumfang, Alternative im Sortiment, Werte, Abschluss, Kaufleiste Handy); Änderungen immer an beiden Seiten
+- Knopf „Zum Produkt“: Ziel im `<body data-produkt-url="">` der jeweiligen Seite (leer, bis 06 die Produkt-URLs liefert)
+- Schulungsprojekt wird nie veröffentlicht: GitHub Pages aus, Repo privat, `noindex` bleibt (GF 02.11.2026)
 
 ## Arbeitsweise
 - Erst planen, dann bauen; eine Seite/Funktion nach der anderen; nach jedem Schritt im Browser testen (PC + Handy 390 px)
