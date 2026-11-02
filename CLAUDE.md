@@ -13,13 +13,14 @@ Quelle der Regeln: Projektordner `03_Marke/Styleguide.md`, `03_Marke/Tonalitaet.
 |---|---|---|
 | Waldgrün | `#2E4A3B` | Überschriften, Logo, Fußzeile, große Flächen |
 | Seeblau | `#24557A` | Links, Maße/Zahlen, kleine Elemente |
-| Rost | `#B4521E` | **nur** Handlungsknöpfe, max. 1 je Ansicht |
+| Rost | `#B4521E` | **nur** Handlungsknöpfe, max. 1 je Ansicht (weitere Knöpfe als `knopf--zweit` in Waldgrün) |
 | Leinen | `#F6F2EA` | Seitenhintergrund |
 | Anthrazit | `#22272A` | Fließtext |
 | Holz | `#D8C3A0` | Hinweisflächen, nie Textfarbe |
 
 ## Schriften (selbst gehostet, `assets/fonts/`, SIL OFL)
 - Überschriften: **Bitter** 500/700, Waldgrün · Text, Daten, Knöpfe: **Source Sans 3** 400/600, Anthrazit, min. 16 px, Zeilenabstand 1,5–1,6
+- Alle Texte min. 1rem (16 px) – auch Preiszusätze, Kaufleiste, Fußzeile
 - Fallback Georgia / Arial · **Nie** Google Fonts oder andere externe Dienste einbinden
 - Keine Zeilen nur in Großbuchstaben; Maße und Gewichte immer in Source Sans 3
 
@@ -37,14 +38,15 @@ Quelle der Regeln: Projektordner `03_Marke/Styleguide.md`, `03_Marke/Tonalitaet.
 - Texte nur aus freigegebenen Dateien: `02_E-Commerce_Vertrieb/Produkttexte.md`, `Produktdaten.md`, `Preise.md`. Nichts erfinden – fehlt etwas: „folgt“ bzw. ⚠️ und Rückfrage.
 - Bilder nur freigegebene Varianten laut `02_E-Commerce_Vertrieb/Produktbilder/Bildliste.md`, und zwar die **KI-gekennzeichneten Kopien** aus dem Unterordner „AI-Tag“ (geteiltes Drive „02 Produktbilder“), als WebP (1024 / 640 / 320 px) in `assets/bilder/<kompakt|komfort>/`.
 - Pflichttexte beim Preis (`06_Shop/Rechtstexte.md`, Abschnitt 5): „inkl. MwSt., zzgl. Versandkosten“ (Link auf `versand-zahlung.html`) + „Lieferzeit: 1–3 Werktage“.
-- Versand: 4,90 €, ab 40,00 € Warenkorbwert versandkostenfrei.
-- Rechtstexte 1:1 aus `04_Website_Landingpage/Rechtstexte.md` und `06_Shop/Rechtstexte.md` (Abschnitt 4).
+- Versand: „4,90 € bei einem Warenwert unter 40,00 € · ab 40,00 € versandkostenfrei“ (GF 02.11.2026).
+- Rechtstexte 1:1 aus `04_Website_Landingpage/Rechtstexte.md` und `06_Shop/Rechtstexte.md` (Abschnitte 2–4).
 
 ## Aufbau
 ```
 index.html                  Landingpage 01 Campingstuhl Kompakt
 campingstuhl-komfort.html   Landingpage 02 Campingstuhl Komfort
 versand-zahlung.html        Versand & Zahlung (06_Shop/Rechtstexte.md, Abschnitt 4)
+widerruf.html               Widerrufsbelehrung + Muster-Formular (06_Shop/Rechtstexte.md, Abschnitte 2 + 3, Sie-Form)
 impressum.html              Impressum (Rechtstexte.md, fiktive Firmendaten)
 datenschutz.html            Datenschutz (Rechtstexte.md)
 assets/style.css    alle Styles, Farben als CSS-Variablen
@@ -59,6 +61,7 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/)
 - Schulungsprojekt wird nie veröffentlicht: GitHub Pages aus, Repo privat, `noindex` bleibt (GF 02.11.2026)
 
 ## Arbeitsweise
+- Handy: Kopfbereich in der Reihenfolge Überschrift + Produktname → Bild (4:3) → Text, Fakten, Preis, Knopf
 - Erst planen, dann bauen; eine Seite/Funktion nach der anderen; nach jedem Schritt im Browser testen (PC + Handy 390 px)
 - Keine Passwörter, API-Schlüssel, echten Kunden- oder Bankdaten im Code
 - Neue Seiten, Funktionen, Rechtstexte nur mit Freigabe der GF; Änderungen ins Protokoll `99_Protokolle/JJJJ-MM-TT.md`

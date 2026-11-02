@@ -28,11 +28,19 @@
 
   <!-- 1 Kopfbereich -->
   <section class="hero" aria-labelledby="titel">
-    <div class="wrap">
-      <div>
+    <div class="wrap hero__raster">
+      <div class="hero__kopf">
         <p class="kicker">Dein Projekt. Draußen gemacht.</p>
         <p class="hero__claim" aria-hidden="true">Dein Wochenende am See.</p>
         <h1 id="titel" class="hero__produkt">VELDORIQ Campingstuhl Komfort – gepolstert, Lehne verstellbar</h1>
+      </div>
+      <div class="hero__bild">
+        <img class="" src="assets/bilder/komfort/11-emotion-4x5.webp"
+             srcset="assets/bilder/komfort/11-emotion-4x5-640.webp 640w, assets/bilder/komfort/11-emotion-4x5.webp 1024w"
+             sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1280" fetchpriority="high"
+             alt="Zwei Personen sitzen mit Tassen am Seeufer auf gepolsterten schwarzen Campingstühlen, von hinten gesehen">
+      </div>
+      <div class="hero__rest">
         <p class="lead">Der gepolsterte Campingstuhl für lange Abende am Zelt: Rückenlehne einstellen, bequem Platz nehmen – Getränk und Kleinkram hast du in Getränkehalter und Seitentasche griffbereit.</p>
         <ul class="hero__fakten" aria-label="Wichtigste Daten">
           <li>6 cm Polster</li>
@@ -46,12 +54,6 @@
           <span class="preis__info">inkl. MwSt., zzgl. <a href="versand-zahlung.html">Versandkosten</a> · <span class="nowrap">Lieferzeit: 1–3 Werktage</span></span>
         </p>
         <a class="knopf js-produkt-link js-cta" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
-      </div>
-      <div class="hero__bild">
-        <img class="" src="assets/bilder/komfort/11-emotion-4x5.webp"
-             srcset="assets/bilder/komfort/11-emotion-4x5-640.webp 640w, assets/bilder/komfort/11-emotion-4x5.webp 1024w"
-             sizes="(max-width: 860px) 100vw, 44vw" width="1024" height="1280" fetchpriority="high"
-             alt="Zwei Personen sitzen mit Tassen am Seeufer auf gepolsterten schwarzen Campingstühlen, von hinten gesehen">
       </div>
     </div>
   </section>
@@ -69,7 +71,7 @@
           <li><span><strong>Platz zum Sitzen</strong> Sitzfläche 51 × 50 cm</span></li>
         </ul>
         <div class="cta-zeile">
-          <a class="knopf js-produkt-link js-cta" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
+          <a class="knopf js-produkt-link js-cta knopf--zweit" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
           <span class="cta-zeile__preis"><strong>37,97 €</strong> inkl. MwSt., zzgl. <a href="versand-zahlung.html">Versandkosten</a> · <span class="nowrap">Lieferzeit: 1–3 Werktage</span></span>
         </div>
       </div>
@@ -268,8 +270,9 @@
 
 <!-- Fester Knopf am Handy: nur sichtbar, wenn kein anderer Knopf im Bild ist (max. 1 Rost-Knopf je Ansicht) -->
 <div class="kaufleiste" id="kaufleiste" hidden>
-  <div class="kaufleiste__preis"><strong>37,97 €</strong><span>inkl. MwSt., zzgl. <a href="versand-zahlung.html">Versandkosten</a></span><span>Lieferzeit: 1–3 Werktage</span></div>
+  <strong class="kaufleiste__preis">37,97 €</strong>
   <a class="knopf js-produkt-link" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
+  <span class="kaufleiste__info">inkl. MwSt., zzgl. <a href="versand-zahlung.html">Versandkosten</a> · <span class="nowrap">Lieferzeit: 1–3 Werktage</span></span>
 </div>
 
 <footer class="fuss">
@@ -279,6 +282,7 @@
       <li><a href="index.html">Campingstuhl Kompakt</a></li>
       <li><a href="campingstuhl-komfort.html">Campingstuhl Komfort</a></li>
       <li><a href="versand-zahlung.html">Versand &amp; Zahlung</a></li>
+      <li><a href="widerruf.html">Widerrufsbelehrung</a></li>
       <li><a href="impressum.html">Impressum</a></li>
       <li><a href="datenschutz.html">Datenschutz</a></li>
     </ul>
