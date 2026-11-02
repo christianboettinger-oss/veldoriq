@@ -244,3 +244,4 @@ h3 + .liste-einfach { margin-top: 0; }
   .knopf, .knopf__pfeil { transition: none; }
 }
 .nowrap { white-space: nowrap; }
+.hero__transport { font-size: .95rem; margin: -1.1em 0 1.6em; }
