@@ -1,22 +1,34 @@
-// VELDORIQ Shop (06) – Galerie, Menge, Warenkorb-Zähler
-// Schritt 1: Artikel werden im Browser gemerkt (localStorage). Warenkorbseite, Versandlogik und Stripe folgen in Schritt 2.
-// Preise im Browser sind nur Anzeige – der Server rechnet später selbst (Schutz vor Manipulation).
+// VELDORIQ Shop (06) – Galerie, Menge, Warenkorb, Kasse, Danke-Seite
+// Warenkorb liegt nur im Browser (localStorage). Preise im Browser sind Anzeige –
+// der Server (server.js) rechnet mit shop/produkte.json selbst (Schutz vor Manipulation).
 (function () {
   const SPEICHER = "veldoriq-warenkorb";
+  const euro = (cent) => (cent / 100).toLocaleString("de-DE", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const $ = (sel, wurzel = document) => wurzel.querySelector(sel);
 
   function lesen() {
-    try { return JSON.parse(localStorage.getItem(SPEICHER)) || []; } catch (_) { return []; }
+    try {
+      const k = JSON.parse(localStorage.getItem(SPEICHER));
+      return Array.isArray(k) ? k.filter((p) => p && typeof p.sku === "string" && Number.isInteger(p.menge) && p.menge > 0) : [];
+    } catch (_) { return []; }
   }
   function schreiben(korb) {
     try { localStorage.setItem(SPEICHER, JSON.stringify(korb)); } catch (_) { /* privater Modus: ohne Speicher weiter */ }
+    zaehler();
   }
-  function zaehlerAktualisieren() {
-    const anzahl = lesen().reduce((s, p) => s + p.menge, 0);
-    document.querySelectorAll(".korb-zahl").forEach((el) => { el.textContent = anzahl; });
+  function zaehler() {
+    const n = lesen().reduce((s, p) => s + p.menge, 0);
+    document.querySelectorAll(".korb-zahl").forEach((el) => { el.textContent = n; });
   }
-  zaehlerAktualisieren();
+  zaehler();
 
-  // Galerie
+  let katalogPromise = null;
+  const katalog = () => (katalogPromise ||= fetch("produkte.json", { cache: "no-cache" }).then((r) => {
+    if (!r.ok) throw new Error("Katalog");
+    return r.json();
+  }));
+
+  // ---------- Galerie (Produktseite) ----------
   const main = document.querySelector("main[data-bilder]");
   const gross = document.getElementById("galerie-bild");
   if (main && gross) {
@@ -31,29 +43,160 @@
     }));
   }
 
-  // Menge + In den Warenkorb
+  // ---------- Menge + In den Warenkorb (Produktseite) ----------
+  const begrenzen = (n) => Math.min(10, Math.max(1, Number.isFinite(n) ? Math.round(n) : 1));
   document.querySelectorAll(".js-in-korb").forEach((form) => {
     const feld = form.querySelector("input[name=menge]");
-    const begrenzen = (n) => Math.min(10, Math.max(1, Number.isFinite(n) ? Math.round(n) : 1));
     form.querySelectorAll(".menge__knopf").forEach((k) => k.addEventListener("click", () => {
       feld.value = begrenzen(Number(feld.value) + Number(k.dataset.schritt));
     }));
     feld.addEventListener("change", () => { feld.value = begrenzen(Number(feld.value)); });
-
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const menge = begrenzen(Number(feld.value));
       const korb = lesen();
-      const vorhanden = korb.find((p) => p.sku === form.dataset.sku);
-      if (vorhanden) vorhanden.menge = Math.min(10, vorhanden.menge + menge);
+      const da = korb.find((p) => p.sku === form.dataset.sku);
+      if (da) da.menge = Math.min(10, da.menge + menge);
       else korb.push({ sku: form.dataset.sku, menge });
       schreiben(korb);
-      zaehlerAktualisieren();
-      const meldung = document.querySelector(".kauf__meldung");
+      const meldung = $(".kauf__meldung");
       if (meldung) {
-        meldung.textContent = `${menge} × ${form.dataset.name} liegt im Warenkorb.`;
+        meldung.innerHTML = "";
+        meldung.append(`${menge} × ${form.dataset.name} liegt im Warenkorb. `);
+        const a = document.createElement("a");
+        a.href = "warenkorb.html"; a.textContent = "Zum Warenkorb →";
+        meldung.append(a);
         meldung.hidden = false;
       }
     });
   });
+
+  const seite = document.querySelector("main[data-seite]")?.dataset.seite;
+  if (!seite) return;
+
+  function serverHinweis() {
+    const h = $(".js-hinweis-server"); if (h) h.hidden = false;
+  }
+
+  // ---------- Positionen zeichnen (Warenkorb / Kasse) ----------
+  function zeichnen(kat, bearbeitbar) {
+    const korb = lesen().filter((p) => kat.artikel[p.sku]);
+    const leer = $(".js-leer"), voll = $(".js-voll");
+    if (korb.length === 0) { leer.hidden = false; voll.hidden = true; return null; }
+    leer.hidden = true; voll.hidden = false;
+    const r = window.VeldoriqRechnung.berechne(korb, kat);
+    const liste = $(".js-liste");
+    liste.innerHTML = "";
+    r.positionen.forEach((p) => {
+      const a = kat.artikel[p.sku];
+      const li = document.createElement("li");
+      li.className = "posten";
+      li.innerHTML = `
+        <a class="posten__bild" href="${a.url}" tabindex="-1" aria-hidden="true"><img src="${a.bild}" width="96" height="96" alt=""></a>
+        <div class="posten__text">
+          <a class="posten__name" href="${a.url}"></a>
+          <span class="posten__info">Farbe: Schwarz · Art.-Nr. ${p.sku} · Einzelpreis ${euro(p.preis_cent)}</span>
+        </div>
+        <div class="posten__menge"></div>
+        <div class="posten__summe">${euro(p.summe_cent)}</div>`;
+      li.querySelector(".posten__name").textContent = p.name;
+      const mengeZelle = li.querySelector(".posten__menge");
+      if (bearbeitbar) {
+        mengeZelle.innerHTML = `
+          <span class="menge__feld menge__feld--klein">
+            <button type="button" class="menge__knopf" data-schritt="-1" aria-label="Menge verringern">−</button>
+            <input type="number" min="1" max="${kat.max_menge}" value="${p.menge}" aria-label="Menge ${p.name}">
+            <button type="button" class="menge__knopf" data-schritt="1" aria-label="Menge erhöhen">+</button>
+          </span>
+          <button type="button" class="posten__entfernen">Entfernen</button>`;
+        const feld = mengeZelle.querySelector("input");
+        const setzen = (n) => {
+          const k = lesen();
+          const e = k.find((x) => x.sku === p.sku);
+          if (e) e.menge = Math.min(kat.max_menge, Math.max(1, n));
+          schreiben(k); zeichnen(kat, true);
+        };
+        mengeZelle.querySelectorAll(".menge__knopf").forEach((b) => b.addEventListener("click", () => setzen(p.menge + Number(b.dataset.schritt))));
+        feld.addEventListener("change", () => setzen(Math.round(Number(feld.value)) || 1));
+        mengeZelle.querySelector(".posten__entfernen").addEventListener("click", () => {
+          schreiben(lesen().filter((x) => x.sku !== p.sku)); zeichnen(kat, true);
+        });
+      } else {
+        mengeZelle.textContent = `${p.menge} ×`;
+      }
+      liste.append(li);
+    });
+    $(".js-zwischensumme").textContent = euro(r.zwischensumme_cent);
+    $(".js-versand").textContent = r.versand_cent === 0 ? "kostenfrei" : euro(r.versand_cent);
+    $(".js-gesamt").textContent = euro(r.gesamt_cent);
+    $(".js-mwst").textContent = "(" + euro(Math.round(r.gesamt_cent - r.gesamt_cent / 1.19)) + ")";
+    const frei = $(".js-frei");
+    if (frei) {
+      frei.textContent = r.bis_frei_cent > 0
+        ? `Noch ${euro(r.bis_frei_cent)} bis zum kostenlosen Versand.`
+        : "Dein Versand ist kostenlos (ab 40,00 € Warenkorbwert).";
+      frei.classList.toggle("summe__frei--ok", r.bis_frei_cent === 0);
+    }
+    return r;
+  }
+
+  if (seite === "warenkorb" || seite === "kasse") {
+    katalog().then((kat) => {
+      zeichnen(kat, seite === "warenkorb");
+      const knopf = $(".js-bestellen");
+      if (!knopf) return;
+      knopf.addEventListener("click", async () => {
+        const fehler = $(".js-fehler");
+        fehler.hidden = true;
+        knopf.disabled = true; knopf.textContent = "Weiter zu Stripe …";
+        try {
+          const antwort = await fetch("/api/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ artikel: lesen() }),
+          });
+          const daten = await antwort.json();
+          if (!antwort.ok || !daten.url) throw new Error(daten.fehler || "Unbekannter Fehler");
+          window.location.href = daten.url;
+        } catch (e) {
+          fehler.textContent = "Die Bestellung konnte nicht gestartet werden: " + e.message;
+          fehler.hidden = false;
+          knopf.disabled = false; knopf.textContent = "Zahlungspflichtig bestellen";
+        }
+      });
+    }).catch(serverHinweis);
+  }
+
+  // ---------- Danke-Seite ----------
+  if (seite === "danke") {
+    const id = new URLSearchParams(location.search).get("session_id");
+    const zeigeFehler = (text) => {
+      $(".js-laden").hidden = true; $(".js-fehler").hidden = false;
+      if (text) $(".js-fehlertext").textContent = text;
+    };
+    if (!id) { zeigeFehler("Es wurde keine Bestellung übergeben."); return; }
+    fetch("/api/bestellung?session_id=" + encodeURIComponent(id))
+      .then((r) => r.json().then((d) => ({ ok: r.ok, d })))
+      .then(({ ok, d }) => {
+        if (!ok) throw new Error(d.fehler);
+        $(".js-laden").hidden = true; $(".js-ok").hidden = false;
+        $(".js-nr").textContent = d.bestellnummer;
+        const liste = $(".js-liste");
+        d.positionen.forEach((p) => {
+          const li = document.createElement("li");
+          li.className = "posten posten--einfach";
+          const t = document.createElement("span"); t.className = "posten__name"; t.textContent = `${p.menge} × ${p.name}`;
+          const s = document.createElement("span"); s.className = "posten__summe"; s.textContent = euro(p.summe_cent);
+          li.append(t, s); liste.append(li);
+        });
+        $(".js-versand").textContent = d.versand_cent === 0 ? "kostenfrei" : euro(d.versand_cent);
+        $(".js-gesamt").textContent = euro(d.summe_cent) + " inkl. MwSt.";
+        $(".js-status").textContent = d.bezahlt
+          ? "Zahlung erfolgreich (Testmodus)."
+          : "Zahlung in Bearbeitung (z. B. SEPA-Lastschrift) – Testmodus.";
+        try { sessionStorage.setItem("veldoriq-letzte-bestellung", d.bestellnummer); } catch (_) {}
+        schreiben([]); // Warenkorb leeren
+      })
+      .catch((e) => zeigeFehler(e.message && e.message !== "Failed to fetch" ? e.message : null));
+  }
 })();

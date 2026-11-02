@@ -99,3 +99,54 @@
   .daten--umbruch th { width: 42%; }
 }
 @media (prefers-reduced-motion: reduce) { .karte { transition: none; } .karte:hover { transform: none; } }
+
+/* ---------- Warenkorb / Kasse / Danke (Schritt 2) ---------- */
+.shopseite .wrap.breit { max-width: var(--breite); }
+.shopseite h2.klein { font-size: 1.25rem; margin: 1.4em 0 .6em; }
+.brotkrumen-einfach { margin: 0 0 .6em; font-size: .95rem; }
+.hinweis-server { background: var(--holz); border-radius: var(--radius); padding: 14px 18px; font-weight: 600; }
+.korb { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: clamp(24px, 4vw, 48px); align-items: start; margin-top: 12px; }
+.korb__liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
+.posten {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr) auto auto; gap: 8px 20px; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid var(--linie);
+}
+.posten__bild img { width: 96px; height: 96px; object-fit: contain; background: var(--weiss); border: 1px solid var(--linie); border-radius: 8px; }
+.posten__text { display: grid; gap: 4px; }
+.posten__name { font-weight: 600; color: var(--anthrazit); text-decoration: none; }
+a.posten__name:hover { color: var(--seeblau); text-decoration: underline; }
+.posten__info { font-size: .95rem; }
+.posten__menge { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.posten__summe { font-weight: 600; min-width: 84px; text-align: right; }
+.posten__entfernen { background: none; border: 0; padding: 2px 4px; color: var(--seeblau); font: 400 .95rem var(--schrift-text); text-decoration: underline; cursor: pointer; }
+.posten--einfach { grid-template-columns: minmax(0, 1fr) auto; }
+.menge__feld--klein { height: 42px; }
+.menge__feld--klein .menge__knopf { width: 38px; }
+.menge__feld--klein input { width: 38px; font-size: 1rem; }
+.summe { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 22px 24px; position: sticky; top: 16px; }
+.summe__frei { background: var(--leinen); border-radius: 8px; padding: 10px 14px; margin: 0 0 16px; font-weight: 600; }
+.summe__frei--ok { background: var(--holz); }
+.summe__tabelle { display: grid; grid-template-columns: 1fr auto; gap: 8px 0; margin: 0 0 6px; }
+.summe__tabelle dt, .summe__tabelle dd { margin: 0; }
+.summe__tabelle dd { text-align: right; padding-left: 16px; }
+.summe__gesamt { font-weight: 600; font-size: 1.2rem; padding-top: 8px; border-top: 1px solid var(--linie); }
+.summe__tabelle--schmal { max-width: 420px; margin: 12px 0 16px; }
+.summe__mwst { font-size: .95rem; margin: 0 0 16px; }
+.summe__recht { font-size: .95rem; margin: 0 0 16px; }
+.summe__knopf { width: 100%; }
+.summe__knopf:disabled { opacity: .7; cursor: wait; transform: none; box-shadow: none; }
+.summe__weiter { text-align: center; margin: 12px 0 0; }
+.summe .kauf__meldung { margin-top: 12px; border-color: var(--rost); }
+.summe .schulung { margin: 16px 0 0; font-size: .95rem; }
+@media (max-width: 860px) {
+  .korb { grid-template-columns: 1fr; }
+  .summe { position: static; }
+}
+@media (max-width: 560px) {
+  .posten { grid-template-columns: 72px minmax(0, 1fr); }
+  .posten__bild img { width: 72px; height: 72px; }
+  .posten__menge { grid-column: 2; flex-direction: row; justify-content: flex-start; gap: 14px; }
+  .posten__summe { grid-column: 2; text-align: left; }
+  .posten--einfach { grid-template-columns: minmax(0, 1fr) auto; }
+  .posten--einfach .posten__summe { grid-column: auto; text-align: right; }
+}
