@@ -22,8 +22,8 @@ const PMC = process.env.STRIPE_PAYMENT_METHOD_CONFIG || "";
 // ---------- Stripe nur mit Testschlüssel ----------
 const schluessel = process.env.STRIPE_SECRET_KEY || "";
 let stripe = null;
-if (!schluessel) {
-  console.warn("⚠️  Kein STRIPE_SECRET_KEY in .env – Seiten laufen, der Checkout ist gesperrt.");
+if (!schluessel || schluessel.includes("HIER_EINTRAGEN")) {
+  console.warn("⚠️  Kein Testschlüssel in .env (noch Platzhalter?) – Seiten laufen, der Checkout ist gesperrt.");
 } else if (!schluessel.startsWith("sk_test_") && !schluessel.startsWith("rk_test_")) {
   console.error("⛔ Nur Testschlüssel (sk_test_…) erlaubt. Server wird beendet.");
   process.exit(1);
