@@ -117,6 +117,8 @@ async function checkout(req, res) {
       cancel_url: `${BASIS}/shop/abbruch.html`,
     });
     console.log(`Checkout gestartet: ${nr} · ${(r.gesamt_cent / 100).toFixed(2)} € (Test)`);
+    console.log(`  Zahlungsarten laut Stripe: ${(session.payment_method_types || []).join(", ") || "–"}`);
+    if (session.payment_method_configuration_details) console.log(`  Konfiguration: ${session.payment_method_configuration_details.id}`);
     json(res, 200, { url: session.url, bestellnummer: nr });
   } catch (e) {
     console.error("Stripe-Fehler:", e.message);
