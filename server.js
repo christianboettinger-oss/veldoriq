@@ -14,8 +14,10 @@ const BASIS = `http://localhost:${PORT}`;
 const WURZEL = __dirname;
 const KATALOG = JSON.parse(fs.readFileSync(path.join(WURZEL, "shop", "produkte.json"), "utf8"));
 
-// Zahlungsarten laut AGB (06_Shop/Rechtstexte.md § 5). Apple Pay und Google Pay laufen über "card".
-const ZAHLUNGSARTEN = ["card", "paypal", "klarna", "sepa_debit"];
+// Zahlungsarten: Stripe steuert sie jetzt nur noch über das Dashboard (Einstellungen → Zahlungen → Zahlungsmethoden).
+// Dort nur die Zahlungsarten laut AGB aktiv lassen (06_Shop/Rechtstexte.md § 5): Karten, Apple Pay, Google Pay, PayPal, Klarna, SEPA.
+// Optional: eigene Zahlungsmethoden-Konfiguration (pmc_…) in .env als STRIPE_PAYMENT_METHOD_CONFIG.
+const PMC = process.env.STRIPE_PAYMENT_METHOD_CONFIG || "";
 
 // ---------- Stripe nur mit Testschlüssel ----------
 const schluessel = process.env.STRIPE_SECRET_KEY || "";
@@ -86,7 +88,7 @@ async function checkout(req, res) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       locale: "de",
-      payment_method_types: ZAHLUNGSARTEN,
+      ...(PMC ? { payment_method_configuration: PMC } : {}),
       client_reference_id: nr,
       metadata: { bestellnummer: nr, schulungsprojekt: "ja" },
       line_items: r.positionen.map((p) => ({
