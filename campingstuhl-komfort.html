@@ -16,11 +16,22 @@
 <body data-bilder="assets/bilder/komfort/" data-produkt-url="">
 
 <header class="kopf">
-  <div class="wrap">
-    <a class="kopf__logo" href="index.html" aria-label="VELDORIQ – Campingstuhl Kompakt">
+  <div class="wrap kopf__wrap">
+    <a class="kopf__logo" href="index.html" aria-label="VELDORIQ – Startseite">
       <img src="assets/logo/Logo_VELDORIQ.svg" alt="VELDORIQ" width="168" height="31">
     </a>
-    <span class="kopf__hinweis">Outdoor &amp; DIY</span>
+    <button class="menue-knopf" type="button" aria-expanded="false" aria-controls="hauptmenue">Menü</button>
+    <nav class="hauptnav" id="hauptmenue" aria-label="Hauptmenü">
+      <ul>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="sortiment.html" aria-current="page">Sortiment</a></li>
+        <li><a href="diy-projekte.html">DIY-Projekte</a></li>
+        <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <a class="knopf knopf--zweit knopf--klein js-shop-link" href="#">Zum Shop</a>
+    </nav>
   </div>
 </header>
 
@@ -205,13 +216,13 @@
   <section class="abschnitt alternative" aria-labelledby="alternative">
     <div class="wrap">
       <div class="alternative__karte">
-        <a class="alternative__bild" href="index.html" tabindex="-1" aria-hidden="true">
+        <a class="alternative__bild" href="campingstuhl-kompakt.html" tabindex="-1" aria-hidden="true">
           <img src="assets/bilder/kompakt/01-hauptbild-320.webp" width="320" height="320" alt="" loading="lazy">
         </a>
         <div>
           <h2 id="alternative">Alternative im Sortiment</h2>
           <p>Du suchst einen kleineren Stuhl für unterwegs? Dann schau dir den Campingstuhl Kompakt an (3 kg inkl. Tasche, Packmaß 88 × 18 × 18 cm).</p>
-          <a class="alternative__link" href="index.html">Zum Campingstuhl Kompakt <span aria-hidden="true">→</span></a>
+          <a class="alternative__link" href="campingstuhl-kompakt.html">Zum Campingstuhl Kompakt <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>
@@ -279,7 +290,15 @@
   <div class="wrap">
     <img class="fuss__logo" src="assets/logo/Logo_VELDORIQ_dunkel.svg" alt="VELDORIQ" width="150" height="28">
     <ul class="fuss__links">
-      <li><a href="index.html">Campingstuhl Kompakt</a></li>
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
+      <li><a href="sortiment.html">Sortiment</a></li>
+      <li><a href="diy-projekte.html">DIY-Projekte</a></li>
+      <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <ul class="fuss__links">
+      <li><a href="campingstuhl-kompakt.html">Campingstuhl Kompakt</a></li>
       <li><a href="campingstuhl-komfort.html">Campingstuhl Komfort</a></li>
       <li><a href="versand-zahlung.html">Versand &amp; Zahlung</a></li>
       <li><a href="widerruf.html">Widerrufsbelehrung</a></li>

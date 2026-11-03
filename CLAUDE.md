@@ -43,19 +43,27 @@ Quelle der Regeln: Projektordner `03_Marke/Styleguide.md`, `03_Marke/Tonalitaet.
 
 ## Aufbau
 ```
-index.html                  Landingpage 01 Campingstuhl Kompakt
+index.html                  Firmenwebsite: Start
+ueber-uns.html              Firmenwebsite: Über uns
+sortiment.html              Firmenwebsite: Sortiment
+diy-projekte.html           Firmenwebsite: DIY-Projekte (Ratgeber folgen)
+fuer-unternehmen.html       Firmenwebsite: Für Unternehmen (Sie-Form, Angebot per E-Mail)
+kontakt.html                Firmenwebsite: Kontakt (kein Formular)
+campingstuhl-kompakt.html   Landingpage 01 Campingstuhl Kompakt
 campingstuhl-komfort.html   Landingpage 02 Campingstuhl Komfort
 versand-zahlung.html        Versand & Zahlung (06_Shop/Rechtstexte.md, Abschnitt 4)
 widerruf.html               Widerrufsbelehrung + Muster-Formular (06_Shop/Rechtstexte.md, Abschnitte 2 + 3, Sie-Form)
 impressum.html              Impressum (Rechtstexte.md, fiktive Firmendaten)
 datenschutz.html            Datenschutz (Rechtstexte.md)
 assets/style.css    alle Styles, Farben als CSS-Variablen
-assets/seite.js     Galerie, Knopf „Zum Produkt“, Kaufleiste Handy
+assets/seite.js     Menü Handy, Knopf „Zum Shop“ (SHOP_URL), Galerie, Knopf „Zum Produkt“, Kaufleiste Handy
 assets/fonts/       woff2 + Lizenzen
 assets/logo/        SVG-Logos
-assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/)
+assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder (firma/, F1–F5 aus „02 Produktbilder/F_Firmenwebsite/AI-Tag“)
 ```
 - Reines HTML/CSS, wenig JavaScript, kein Build-Schritt, keine Frameworks
+- Texte Firmenwebsite 1:1 aus `04_Website_Landingpage/Texte_Firmenwebsite.md`; Seitenplan `Sitemap.md`
+- Kopfzeile auf allen Seiten: Navigation (6 Seiten) + Knopf „Zum Shop“ (Waldgrün, `knopf--zweit`); am Handy Menü-Knopf
 - Beide Produktseiten haben denselben Aufbau (Kopfbereich, Vorteile + Knopf, Galerie, In der Praxis, Maße & Daten, Unterwegs & Lieferumfang, Alternative im Sortiment, Werte, Abschluss, Kaufleiste Handy); Änderungen immer an beiden Seiten
 - Knopf „Zum Produkt“: Ziel im `<body data-produkt-url="">` der jeweiligen Seite (leer, bis 06 die Produkt-URLs liefert)
 - Schulungsprojekt wird nie veröffentlicht: GitHub Pages aus, Repo privat, `noindex` bleibt (GF 02.11.2026)

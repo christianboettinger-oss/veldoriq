@@ -10,6 +10,23 @@
     else { a.addEventListener("click", (e) => e.preventDefault()); }
   });
 
+  // Knopf „Zum Shop“: Shop-Adresse folgt von 06 (GF 02.11.2026) – dann hier eintragen
+  const SHOP_URL = "";
+  document.querySelectorAll(".js-shop-link").forEach((a) => {
+    if (SHOP_URL) { a.href = SHOP_URL; }
+    else { a.addEventListener("click", (e) => e.preventDefault()); }
+  });
+
+  // Menü am Handy auf- und zuklappen
+  const menueKnopf = document.querySelector(".menue-knopf");
+  const nav = document.getElementById("hauptmenue");
+  if (menueKnopf && nav) {
+    menueKnopf.addEventListener("click", () => {
+      const offen = nav.classList.toggle("offen");
+      menueKnopf.setAttribute("aria-expanded", String(offen));
+    });
+  }
+
   // Galerie: Ansicht wechseln
   const ordner = body.dataset.bilder || "assets/bilder/";
   const gross = document.getElementById("galerie-bild");
