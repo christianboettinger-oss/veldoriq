@@ -18,7 +18,7 @@ Voraussetzung: Node.js (LTS) und ein Stripe-Testkonto (Sandbox).
 - Der Server startet nicht mit einem Live-Schlüssel und liefert `.env`, `server.js` und `node_modules` nicht aus.
 
 ### Sicherheit im Schulungsbetrieb (01, 04.11.2026)
-- **`.env` nie weitergeben:** nicht in Vorschau-Kopien, ZIPs, Drive oder geteilten Ordnern. Die `.env` liegt nur im lokalen Arbeitsordner, aus dem der Server gestartet wird.
+- **`.env` nie weitergeben (GF 04.11.2026, Variante 2):** Die `.env` liegt nur in `06_Shop/Vorschau_Shop/` auf dem Rechner der GF. `Vorschau_Shop` wird **nie** gezippt, geteilt oder hochgeladen (Drive, Claude-Projekt, E-Mail). Vor jeder Weitergabe die `.env` vorher löschen.
 - **Testdaten Widerruf löschen:** nach jedem Testlauf, spätestens zum Projektende: `npm run aufraeumen` (löscht `widerrufe.jsonl`).
 - **Aktuell halten:** `npm audit` regelmäßig ausführen; Node.js (LTS) und das Paket `stripe` aktuell halten (`npm update stripe`).
 - Der Server setzt für alle Antworten Sicherheits-Header (Content-Security-Policy, nosniff, Referrer-Policy, frame-ancestors 'none').
