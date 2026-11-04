@@ -76,6 +76,7 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder
 
 ## Shop (06) – Ordner `shop/`
 - Lokal starten: `npm start` → `http://localhost:4242/shop/` (Stripe nur Testmodus, Schlüssel nur in `.env`, siehe README)
-- Kunde bleibt im Shop: Logo und erster Menüpunkt „Shop“ führen auf `shop/index.html`; Rechtsseiten im Shop als eigene Fassung mit Shop-Kopfzeile
+- Kunde bleibt im Shop (Variante A, GF 04.11.2026): Logo und erster Menüpunkt „Shop“ führen auf `shop/index.html`; Menü im Shop nur Shopseiten (Shop · Über uns · DIY-Projekte · Für Unternehmen · Kontakt); Firmenwebsite nur über Fußzeile „Über das Unternehmen“
+- **Inhaltsseiten doppelt:** `ueber-uns.html`, `diy-projekte.html`, `fuer-unternehmen.html`, `kontakt.html` werden aus den Seiten von 04 in `shop/` übernommen (Shop-Kopfzeile, Bildpfade `../assets/`). Ändert 04 diese Seiten, Shop-Fassung neu erzeugen
 - **Rechtstexte doppelt (Firma + Shop, GF 04.11.2026):** `versand-zahlung.html`, `impressum.html`, `datenschutz.html`, `widerruf.html` gibt es im Hauptordner (04) und in `shop/` (06). Ändert sich ein Rechtstext, **immer beide Fassungen** anpassen. Shop-Datenschutz = Grundfassung 04 ohne Nr. 2/3 + Ergänzung `06_Shop/Rechtstexte.md` Abschnitt 6
 - Shop-Ziele für 04: „Zum Shop“ → `shop/index.html` · „Zum Produkt“ 01 → `shop/campingstuhl-kompakt.html` · 02 → `shop/campingstuhl-komfort.html`
