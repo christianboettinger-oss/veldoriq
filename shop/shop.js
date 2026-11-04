@@ -199,4 +199,37 @@
       })
       .catch((e) => zeigeFehler(e.message && e.message !== "Failed to fetch" ? e.message : null));
   }
+  // ---------- Widerrufsfunktion (§ 356a BGB) ----------
+  if (seite === "widerruf") {
+    const form = $(".js-widerruf");
+    const umfang = form.elements.umfang, artikelFeld = $(".js-artikel");
+    umfang.addEventListener("change", () => { artikelFeld.hidden = umfang.value !== "teil"; });
+    try {
+      const letzte = sessionStorage.getItem("veldoriq-letzte-bestellung");
+      if (letzte && !form.elements.bestellnummer.value) form.elements.bestellnummer.value = letzte;
+    } catch (_) {}
+    form.addEventListener("submit", async (ev) => {
+      ev.preventDefault();
+      const fehler = $(".js-fehler"), knopf = form.querySelector("button[type=submit]");
+      fehler.hidden = true; knopf.disabled = true;
+      const daten = Object.fromEntries(new FormData(form).entries());
+      try {
+        const r = await fetch("/api/widerruf", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(daten) });
+        const d = await r.json();
+        if (!r.ok) throw new Error(d.fehler || "Unbekannter Fehler");
+        $(".js-zeit").textContent = d.zeit;
+        $(".js-b-name").textContent = d.name;
+        $(".js-b-nr").textContent = d.bestellnummer;
+        $(".js-b-umfang").textContent = d.umfang === "ganz" ? "ganze Bestellung" : d.artikel;
+        $(".js-b-email").textContent = d.email;
+        $(".js-b-text").textContent = d.erklaerung;
+        form.hidden = true; $(".js-bestaetigung").hidden = false;
+        $(".js-bestaetigung").scrollIntoView({ behavior: "smooth", block: "start" });
+      } catch (e) {
+        if (e instanceof TypeError) { serverHinweis(); fehler.textContent = "Der Shop-Server ist nicht erreichbar."; }
+        else fehler.textContent = e.message;
+        fehler.hidden = false; knopf.disabled = false;
+      }
+    });
+  }
 })();

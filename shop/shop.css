@@ -150,3 +150,24 @@ a.posten__name:hover { color: var(--seeblau); text-decoration: underline; }
   .posten--einfach { grid-template-columns: minmax(0, 1fr) auto; }
   .posten--einfach .posten__summe { grid-column: auto; text-align: right; }
 }
+
+/* ---------- Rechtsseiten + Widerrufsfunktion (Schritt 3) ---------- */
+.widerruf-kasten { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.widerruf-kasten__link { font-weight: 600; }
+.formular-muster { list-style: none; padding: 16px 20px; margin: 0 0 1em; background: var(--weiss); border: 1px dashed var(--linie); border-radius: var(--radius); }
+.formular-muster li { margin-bottom: .5em; }
+.formular-muster li::before { content: "– "; }
+.widerruf-form { display: grid; gap: 18px; max-width: 560px; background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 24px; }
+.widerruf-form p { margin: 0; }
+.feld { display: grid; gap: 6px; font-weight: 600; }
+.feld[hidden] { display: none; }
+.feld input, .feld select {
+  font: 400 1.0625rem var(--schrift-text); color: var(--anthrazit); background: var(--leinen);
+  border: 1px solid #C9BFAE; border-radius: 8px; padding: 12px 14px; min-height: 48px; width: 100%;
+}
+.feld input:focus, .feld select:focus { outline: 3px solid var(--seeblau); outline-offset: 1px; }
+.feld__hilfe { font-weight: 400; font-size: .95rem; }
+.widerruf-form .knopf:disabled { opacity: .7; cursor: wait; }
+.bestaetigung { background: var(--weiss); border: 1px solid var(--waldgruen); border-radius: var(--radius); padding: 24px; max-width: 680px; }
+.bestaetigung h2 { margin-top: 0; }
+.widerruf-form[hidden], .bestaetigung[hidden], .korb[hidden] { display: none; }

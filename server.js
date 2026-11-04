@@ -146,10 +146,32 @@ async function bestellung(res, sessionId) {
   }
 }
 
+// ---------- Widerrufsfunktion (§ 356a BGB) – Schulungsprojekt: simuliert, keine E-Mail ----------
+// Eingänge werden nur lokal in widerrufe.jsonl gespeichert (nicht im Repo, .gitignore).
+async function widerruf(req, res) {
+  let d;
+  try { d = await lesen(req, 4000); } catch { return json(res, 400, { fehler: "Ungültige Anfrage." }); }
+  const t = (v, max) => String(v || "").trim().slice(0, max);
+  const name = t(d.name, 100), nr = t(d.bestellnummer, 20).toUpperCase(), email = t(d.email, 120);
+  const umfang = d.umfang === "teil" ? "teil" : "ganz", artikel = t(d.artikel, 200);
+  if (!name) return json(res, 400, { fehler: "Bitte gib deinen Namen an." });
+  if (!/^VQ-\d{8}-[0-9A-F]{4}$/.test(nr)) return json(res, 400, { fehler: "Bitte gib deine Bestellnummer im Format VQ-JJJJMMTT-XXXX an." });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(res, 400, { fehler: "Bitte gib eine gültige E-Mail-Adresse an." });
+  if (umfang === "teil" && !artikel) return json(res, 400, { fehler: "Bitte nenne die Artikel, die du widerrufst." });
+  const eingang = new Date();
+  const zeit = eingang.toLocaleString("de-DE", { timeZone: "Europe/Berlin", dateStyle: "long", timeStyle: "medium" }) + " Uhr";
+  const erklaerung = `Hiermit widerrufe ich, ${name}, den Vertrag über ${umfang === "ganz" ? "die gesamte Bestellung" : "folgende Artikel: " + artikel} (Bestellnummer ${nr}).`;
+  const eintrag = { eingang: eingang.toISOString(), zeit, name, bestellnummer: nr, umfang, artikel, email, erklaerung, simuliert: true };
+  fs.appendFile(path.join(WURZEL, "widerrufe.jsonl"), JSON.stringify(eintrag) + "\n", () => {});
+  console.log(`Widerruf eingegangen: ${nr} · ${zeit} (simuliert, keine E-Mail)`);
+  json(res, 200, eintrag);
+}
+
 // ---------- Server ----------
 http.createServer((req, res) => {
   const url = new URL(req.url, BASIS);
   if (req.method === "POST" && url.pathname === "/api/checkout") return checkout(req, res);
+  if (req.method === "POST" && url.pathname === "/api/widerruf") return widerruf(req, res);
   if (req.method === "GET" && url.pathname === "/api/bestellung") return bestellung(res, url.searchParams.get("session_id"));
   if (req.method === "GET") return datei(req, res, decodeURIComponent(url.pathname));
   json(res, 405, { fehler: "Methode nicht erlaubt" });
