@@ -10,8 +10,8 @@
     else { a.addEventListener("click", (e) => e.preventDefault()); }
   });
 
-  // Knopf „Zum Shop“: Shop-Adresse folgt von 06 (GF 02.11.2026) – dann hier eintragen
-  const SHOP_URL = "";
+  // Knopf „Zum Shop“: Ziel laut 06 (Shop in main übernommen, 04.11.2026)
+  const SHOP_URL = "shop/index.html";
   document.querySelectorAll(".js-shop-link").forEach((a) => {
     if (SHOP_URL) { a.href = SHOP_URL; }
     else { a.addEventListener("click", (e) => e.preventDefault()); }

@@ -66,7 +66,7 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder
 - Texte Firmenwebsite 1:1 aus `04_Website_Landingpage/Texte_Firmenwebsite.md`; Seitenplan `Sitemap.md`
 - Kopfzeile auf allen Seiten: Navigation (6 Seiten) + Knopf „Zum Shop“ (Waldgrün, `knopf--zweit`); am Handy Menü-Knopf
 - Beide Produktseiten haben denselben Aufbau (Kopfbereich, Vorteile + Knopf, Galerie, In der Praxis, Maße & Daten, Unterwegs & Lieferumfang, Alternative im Sortiment, Werte, Abschluss, Kaufleiste Handy); Änderungen immer an beiden Seiten
-- Knopf „Zum Produkt“: Ziel im `<body data-produkt-url="">` der jeweiligen Seite (leer, bis 06 die Produkt-URLs liefert)
+- Knopf „Zum Produkt“: Ziel im `<body data-produkt-url="…">` der jeweiligen Seite (`shop/campingstuhl-kompakt.html` bzw. `shop/campingstuhl-komfort.html`); „Zum Shop“: `SHOP_URL = "shop/index.html"` in `assets/seite.js` (06, 04.11.2026)
 - Schulungsprojekt wird nie veröffentlicht: GitHub Pages aus, Repo privat, `noindex` bleibt (GF 02.11.2026)
 
 ## Barrierefreiheit (GF 04.11.2026: umsetzen trotz Ausnahme für Kleinstunternehmen)
