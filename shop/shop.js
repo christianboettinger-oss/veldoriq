@@ -22,6 +22,16 @@
   }
   zaehler();
 
+  // Menü am Handy auf- und zuklappen (gleiches Verhalten wie assets/seite.js der Firmenwebsite)
+  const menueKnopf = document.querySelector(".menue-knopf");
+  const nav = document.getElementById("hauptmenue");
+  if (menueKnopf && nav) {
+    menueKnopf.addEventListener("click", () => {
+      const offen = nav.classList.toggle("offen");
+      menueKnopf.setAttribute("aria-expanded", String(offen));
+    });
+  }
+
   let katalogPromise = null;
   const katalog = () => (katalogPromise ||= fetch("produkte.json", { cache: "no-cache" }).then((r) => {
     if (!r.ok) throw new Error("Katalog");

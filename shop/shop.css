@@ -1,13 +1,10 @@
 /* VELDORIQ – Ergänzende Styles Shop (06). Basis: ../assets/style.css (Farben, Schriften, Knopf, Fußzeile) */
 
-/* ---------- Kopfzeile mit Navigation ---------- */
-.kopf__nav { display: flex; align-items: center; gap: 22px; font-weight: 600; }
-.kopf__nav a { color: var(--anthrazit); text-decoration: none; }
-.kopf__nav a:hover { color: var(--seeblau); text-decoration: underline; text-underline-offset: 3px; }
-.kopf__korb { display: inline-flex; align-items: center; gap: 8px; }
+/* ---------- Kopfzeile: Navigation von 04 (assets/style.css) + Warenkorb ---------- */
+.kopf__korb { gap: 8px; }
 .korb-zahl {
   display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 7px;
-  border-radius: 999px; background: var(--waldgruen); color: var(--leinen); font-size: .9rem; line-height: 1;
+  border-radius: 999px; background: var(--waldgruen); color: var(--leinen); font-size: 1rem; line-height: 1;
 }
 
 /* ---------- Übersicht ---------- */
@@ -93,7 +90,6 @@
 }
 @media (max-width: 480px) {
   .kopf__logo img { width: 132px; }
-  .kopf__nav { gap: 14px; font-size: .98rem; }
   .galerie--shop .galerie__leiste { grid-template-columns: repeat(6, 1fr); }
   .kauf__form .knopf { flex: 1 1 100%; }
   .daten--umbruch th { width: 42%; }
@@ -171,3 +167,17 @@ a.posten__name:hover { color: var(--seeblau); text-decoration: underline; }
 .bestaetigung { background: var(--weiss); border: 1px solid var(--waldgruen); border-radius: var(--radius); padding: 24px; max-width: 680px; }
 .bestaetigung h2 { margin-top: 0; }
 .widerruf-form[hidden], .bestaetigung[hidden], .korb[hidden] { display: none; }
+
+/* Warenkorb am Handy direkt neben „Menü“ sichtbar (Navigation von 04 klappt ab 1060 px ein) */
+.kopf__korb-handy { display: none; }
+@media (max-width: 1060px) {
+  .kopf__korb-handy {
+    display: inline-flex; align-items: center; gap: 8px; margin-left: auto; min-height: 44px; padding: 0 6px;
+    font-weight: 600; color: var(--anthrazit); text-decoration: none;
+  }
+  .kopf__korb-handy + .menue-knopf { margin-left: 8px; }
+  .hauptnav .kopf__korb { display: none; }
+}
+@media (max-width: 1060px) { .kopf__wrap { gap: 12px; } }
+@media (max-width: 480px) { .korb-wort { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
+.korb-symbol { flex: none; }
