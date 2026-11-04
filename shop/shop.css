@@ -1,0 +1,211 @@
+/* VELDORIQ – Ergänzende Styles Shop (06). Basis: ../assets/style.css (Farben, Schriften, Knopf, Fußzeile) */
+
+/* ---------- Kopfzeile: Navigation von 04 (assets/style.css) + Warenkorb ---------- */
+.kopf__korb { gap: 8px; }
+.korb-zahl {
+  display: inline-grid; place-items: center; min-width: 26px; height: 26px; padding: 0 7px;
+  border-radius: 999px; background: var(--waldgruen); color: var(--leinen); font-size: 1rem; line-height: 1;
+}
+
+/* ---------- Übersicht ---------- */
+.shop-kopf { padding: clamp(32px, 5vw, 56px) 0 clamp(24px, 3vw, 36px); }
+.shop-kopf h1 { margin-bottom: .3em; }
+.shop-kopf__versand {
+  display: inline-block; background: var(--holz); border-radius: var(--radius);
+  padding: 10px 16px; margin: .4em 0 0; font-weight: 600;
+}
+.abschnitt--oben0 { padding-top: 0; }
+.karten { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 32px); }
+.karte {
+  display: flex; flex-direction: column; background: var(--weiss);
+  border: 1px solid var(--linie); border-radius: var(--radius); overflow: hidden;
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+.karte:hover { box-shadow: 0 10px 28px rgba(34, 39, 42, .08); transform: translateY(-2px); }
+.karte__bild img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; }
+.karte__text { padding: 22px 24px 26px; border-top: 1px solid var(--linie); display: flex; flex-direction: column; flex: 1; }
+.karte h2 { font-size: 1.5rem; margin-bottom: .4em; }
+.karte h2 a { color: inherit; text-decoration: none; }
+.karte h2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.karte__fakten { list-style: none; padding: 0; margin: 0 0 1.1em; display: flex; flex-wrap: wrap; gap: 6px 18px; }
+.karte__fakten li { font-size: 1rem; }
+.karte__fakten li::before { content: "✓ "; color: var(--waldgruen); font-weight: 600; }
+.preis--karte { margin-bottom: 1em; }
+.preis--karte .preis__betrag { font-size: 1.8rem; }
+.karte__link { margin-top: auto; font-weight: 600; color: var(--seeblau); }
+
+/* ---------- Produktseite ---------- */
+.brotkrumen { padding-top: 18px; font-size: 1rem; }
+.brotkrumen a { color: var(--seeblau); }
+.kauf { padding: 18px 0 clamp(40px, 6vw, 64px); }
+.kauf__raster { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 4.5vw, 64px); align-items: start; }
+.kauf__info h1 { font-size: clamp(1.75rem, 3.2vw, 2.4rem); }
+.kauf__info .lead { font-size: 1.12rem; }
+.galerie--shop { max-width: none; margin: 0; position: sticky; top: 16px; }
+.galerie--shop .galerie__leiste { grid-template-columns: repeat(6, 1fr); }
+.preis__lieferzeit { margin-top: .2em; }
+.kauf__variante { margin: 0 0 1em; }
+.kauf__variante span { font-weight: 600; }
+.kauf__form { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 18px; margin: 0 0 12px; }
+.menge { display: grid; gap: 6px; font-weight: 600; font-size: 1rem; }
+.menge__feld { display: inline-flex; align-items: center; border: 1px solid var(--linie); border-radius: 999px; background: var(--weiss); height: 52px; }
+.menge__feld input {
+  width: 46px; border: 0; background: transparent; text-align: center;
+  font: 600 1.1rem var(--schrift-text); color: var(--anthrazit); -moz-appearance: textfield;
+}
+.menge__feld input::-webkit-outer-spin-button, .menge__feld input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.menge__knopf {
+  width: 46px; height: 100%; border: 0; background: transparent; cursor: pointer;
+  font: 600 1.3rem var(--schrift-text); color: var(--waldgruen); border-radius: 999px;
+}
+.menge__knopf:hover { background: var(--leinen); }
+.kauf__meldung {
+  background: var(--weiss); border: 1px solid var(--waldgruen); border-radius: var(--radius);
+  padding: 10px 14px; margin: 0 0 12px; font-weight: 600;
+}
+.kauf__versand { font-size: 1rem; margin: 0 0 .5em; }
+.kauf__sku { font-size: 1rem; color: var(--anthrazit); margin: 0; }
+.schmal { max-width: 820px; }
+
+/* Lange Tabellenzeilen umbrechen, nicht abschneiden (Übergabe 02, Punkt 5) */
+.daten--umbruch th, .daten--umbruch td { overflow-wrap: break-word; hyphens: auto; -webkit-hyphens: auto; }
+
+.alternative__preis { font-weight: 600; margin: 0; }
+.alternative__preis span { font-weight: 400; font-size: 1rem; }
+.alternative__preis a { color: inherit; }
+
+/* ---------- Fußzeile: Widerrufsfunktion (§ 356a BGB) ---------- */
+.fuss__widerruf { margin: 0; }
+.widerruf-link {
+  display: inline-block; font-weight: 600; text-decoration: none;
+  border: 1.5px solid var(--leinen); border-radius: 999px; padding: 8px 18px;
+}
+.widerruf-link:hover { background: var(--leinen); color: var(--waldgruen); }
+
+/* ---------- Handy ---------- */
+@media (max-width: 860px) {
+  .karten, .kauf__raster { grid-template-columns: 1fr; }
+  .galerie--shop { position: static; }
+  .fuss { padding-bottom: 48px; }
+}
+@media (max-width: 480px) {
+  .kopf__logo img { width: 132px; }
+  .galerie--shop .galerie__leiste { grid-template-columns: repeat(6, 1fr); }
+  .kauf__form .knopf { flex: 1 1 100%; }
+  .daten--umbruch th { width: 42%; }
+}
+@media (prefers-reduced-motion: reduce) { .karte { transition: none; } .karte:hover { transform: none; } }
+
+/* ---------- Warenkorb / Kasse / Danke (Schritt 2) ---------- */
+.shopseite .wrap.breit { max-width: var(--breite); }
+.shopseite h2.klein { font-size: 1.25rem; margin: 1.4em 0 .6em; }
+.brotkrumen-einfach { margin: 0 0 .6em; font-size: 1rem; }
+.hinweis-server { background: var(--holz); border-radius: var(--radius); padding: 14px 18px; font-weight: 600; }
+.korb { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: clamp(24px, 4vw, 48px); align-items: start; margin-top: 12px; }
+.korb__liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linie); }
+.posten {
+  display: grid; grid-template-columns: 96px minmax(0, 1fr) auto auto; gap: 8px 20px; align-items: center;
+  padding: 16px 0; border-bottom: 1px solid var(--linie);
+}
+.posten__bild img { width: 96px; height: 96px; object-fit: contain; background: var(--weiss); border: 1px solid var(--linie); border-radius: 8px; }
+.posten__text { display: grid; gap: 4px; }
+.posten__name { font-weight: 600; color: var(--anthrazit); text-decoration: none; }
+a.posten__name:hover { color: var(--seeblau); text-decoration: underline; }
+.posten__info { font-size: 1rem; }
+.posten__menge { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.posten__summe { font-weight: 600; min-width: 84px; text-align: right; }
+.posten__entfernen { background: none; border: 0; padding: 0 8px; min-height: 44px; min-width: 44px; color: var(--seeblau); font: 400 .95rem var(--schrift-text); text-decoration: underline; cursor: pointer; }
+.posten--einfach { grid-template-columns: minmax(0, 1fr) auto; }
+.menge__feld--klein { height: 46px; }
+.menge__feld--klein .menge__knopf { width: 44px; }
+.menge__feld--klein input { width: 38px; font-size: 1rem; }
+.summe { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 22px 24px; position: sticky; top: 16px; }
+.summe__frei { background: var(--leinen); border-radius: 8px; padding: 10px 14px; margin: 0 0 16px; font-weight: 600; }
+.summe__frei--ok { background: var(--holz); }
+.summe__tabelle { display: grid; grid-template-columns: 1fr auto; gap: 8px 0; margin: 0 0 6px; }
+.summe__tabelle dt, .summe__tabelle dd { margin: 0; }
+.summe__tabelle dd { text-align: right; padding-left: 16px; }
+.summe__gesamt { font-weight: 600; font-size: 1.2rem; padding-top: 8px; border-top: 1px solid var(--linie); }
+.summe__tabelle--schmal { max-width: 420px; margin: 12px 0 16px; }
+.summe__mwst { font-size: 1rem; margin: 0 0 16px; }
+.summe__recht { font-size: 1rem; margin: 0 0 16px; }
+.summe__knopf { width: 100%; }
+.summe__knopf:disabled { opacity: .7; cursor: wait; transform: none; box-shadow: none; }
+.summe__weiter { text-align: center; margin: 12px 0 0; }
+.summe .kauf__meldung { margin-top: 12px; border-color: var(--rost); }
+.summe .schulung { margin: 16px 0 0; font-size: 1rem; }
+@media (max-width: 860px) {
+  .korb { grid-template-columns: 1fr; }
+  .summe { position: static; }
+}
+@media (max-width: 560px) {
+  .posten { grid-template-columns: 72px minmax(0, 1fr); }
+  .posten__bild img { width: 72px; height: 72px; }
+  .posten__menge { grid-column: 2; flex-direction: row; justify-content: flex-start; gap: 14px; }
+  .posten__summe { grid-column: 2; text-align: left; }
+  .posten--einfach { grid-template-columns: minmax(0, 1fr) auto; }
+  .posten--einfach .posten__summe { grid-column: auto; text-align: right; }
+}
+
+/* ---------- Rechtsseiten + Widerrufsfunktion (Schritt 3) ---------- */
+.widerruf-kasten { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 14px 18px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.widerruf-kasten__link { font-weight: 600; }
+.formular-muster { list-style: none; padding: 16px 20px; margin: 0 0 1em; background: var(--weiss); border: 1px dashed var(--linie); border-radius: var(--radius); }
+.formular-muster li { margin-bottom: .5em; }
+.formular-muster li::before { content: "– "; }
+.widerruf-form { display: grid; gap: 18px; max-width: 560px; background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 24px; }
+.widerruf-form p { margin: 0; }
+.feld { display: grid; gap: 6px; font-weight: 600; }
+.feld[hidden] { display: none; }
+.feld input, .feld select {
+  font: 400 1.0625rem var(--schrift-text); color: var(--anthrazit); background: var(--leinen);
+  border: 1px solid #C9BFAE; border-radius: 8px; padding: 12px 14px; min-height: 48px; width: 100%;
+}
+.feld input:focus, .feld select:focus { outline: 3px solid var(--seeblau); outline-offset: 1px; }
+.feld__hilfe { font-weight: 400; font-size: 1rem; }
+.widerruf-form .knopf:disabled { opacity: .7; cursor: wait; }
+.bestaetigung { background: var(--weiss); border: 1px solid var(--waldgruen); border-radius: var(--radius); padding: 24px; max-width: 680px; }
+.bestaetigung h2 { margin-top: 0; }
+.widerruf-form[hidden], .bestaetigung[hidden], .korb[hidden] { display: none; }
+
+/* Warenkorb am Handy direkt neben „Menü“ sichtbar (Navigation von 04 klappt ab 1060 px ein) */
+.kopf__korb-handy { display: none; }
+@media (max-width: 1060px) {
+  .kopf__korb-handy {
+    display: inline-flex; align-items: center; gap: 8px; margin-left: auto; min-height: 44px; padding: 0 6px;
+    font-weight: 600; color: var(--anthrazit); text-decoration: none;
+  }
+  .kopf__korb-handy + .menue-knopf { margin-left: 8px; }
+  .hauptnav .kopf__korb { display: none; }
+}
+@media (max-width: 1060px) { .kopf__wrap { gap: 12px; } }
+@media (max-width: 480px) { .korb-wort { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; } }
+.korb-symbol { flex: none; }
+
+/* ---------- Barrierefreiheit Shop (Schritt 4.2) ---------- */
+.shopseite, .produkt, .textseite { overflow-wrap: break-word; hyphens: auto; }
+.galerie--shop .galerie__leiste { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.kauf__raster > *, .korb > * { min-width: 0; }
+.daten--umbruch { table-layout: fixed; }
+.posten__name, .posten__info, .summe__tabelle dd, .summe__tabelle dt { overflow-wrap: anywhere; min-width: 0; }
+.feld input, .feld select { max-width: 100%; min-width: 0; }
+@media (max-width: 400px) { .widerruf-form, .bestaetigung, .summe { padding: 16px; } }
+#inhalt { overflow-wrap: break-word; hyphens: auto; }
+#inhalt li, #inhalt li > *, .widerruf-form > *, .feld > * { min-width: 0; }
+.alternative__karte { grid-template-columns: 160px minmax(0, 1fr); }
+@media (max-width: 860px) { .alternative__karte { grid-template-columns: 96px minmax(0, 1fr); } }
+@media (max-width: 480px) { .summe .schulung .nowrap { white-space: normal; } }
+.widerruf-form { grid-template-columns: minmax(0, 1fr); }
+@media (max-width: 860px) { #inhalt .werte__raster { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 400px) { #inhalt .wert { padding: 18px 16px; } }
+.feld { grid-template-columns: minmax(0, 1fr); }
+
+/* ---------- Formular-Barrierefreiheit (Schritt 4.2, Teil 2) ---------- */
+.feld { font-weight: 400; }
+.feld > label { font-weight: 600; }
+.pflicht { font-weight: 400; }
+.feld__fehler { display: block; font-weight: 600; color: var(--anthrazit); border-left: 4px solid var(--anthrazit); padding: 4px 0 4px 10px; background: var(--holz); border-radius: 0 6px 6px 0; }
+.feld__fehler[hidden] { display: none; }
+.feld input[aria-invalid="true"] { border: 2px solid var(--anthrazit); }
+.widerruf-form .knopf[aria-disabled="true"] { opacity: .7; cursor: wait; }
+.menge__feld--klein input { width: 44px; min-height: 44px; }

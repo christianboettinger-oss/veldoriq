@@ -1,0 +1,4 @@
+# Geheimnisse und Abhängigkeiten nie ins Repo
+.env
+node_modules/
+widerrufe.jsonl

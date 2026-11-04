@@ -1,0 +1,25 @@
+{
+  "_hinweis": "Einzige Quelle für Shop-Preise (Preise.md, freigegeben 19.10.2026). Der Server rechnet nur mit dieser Datei, nie mit Preisen aus dem Browser.",
+  "waehrung": "eur",
+  "versand": {
+    "kosten_cent": 490,
+    "frei_ab_cent": 4000,
+    "anbieter": "DHL",
+    "lieferzeit_werktage": [1, 3]
+  },
+  "max_menge": 10,
+  "artikel": {
+    "VEL-0001": {
+      "name": "VELDORIQ Campingstuhl Kompakt",
+      "preis_cent": 2697,
+      "url": "campingstuhl-kompakt.html",
+      "bild": "../assets/bilder/kompakt/01-hauptbild-320.webp"
+    },
+    "VEL-0002": {
+      "name": "VELDORIQ Campingstuhl Komfort",
+      "preis_cent": 3797,
+      "url": "campingstuhl-komfort.html",
+      "bild": "../assets/bilder/komfort/01-hauptbild-320.webp"
+    }
+  }
+}

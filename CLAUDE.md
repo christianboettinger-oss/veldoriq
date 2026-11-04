@@ -78,3 +78,12 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder
 - Erst planen, dann bauen; eine Seite/Funktion nach der anderen; nach jedem Schritt im Browser testen (PC + Handy 390 px)
 - Keine Passwörter, API-Schlüssel, echten Kunden- oder Bankdaten im Code
 - Neue Seiten, Funktionen, Rechtstexte nur mit Freigabe der GF; Änderungen ins Protokoll `99_Protokolle/JJJJ-MM-TT.md`
+
+## Shop (06) – Ordner `shop/`
+- Lokal starten: `npm start` → `http://localhost:4242/shop/` (Stripe nur Testmodus, Schlüssel nur in `.env`, siehe README)
+- Kunde bleibt im Shop (Variante A, GF 04.11.2026): Logo und erster Menüpunkt „Shop“ führen auf `shop/index.html`; Menü im Shop nur Shopseiten (Shop · Über uns · DIY-Projekte · Für Unternehmen · Kontakt); Firmenwebsite nur über Fußzeile „Über das Unternehmen“
+- **Inhaltsseiten doppelt:** `ueber-uns.html`, `diy-projekte.html`, `fuer-unternehmen.html`, `kontakt.html` werden aus den Seiten von 04 in `shop/` übernommen (Shop-Kopfzeile, Bildpfade `../assets/`). Ändert 04 diese Seiten, Shop-Fassung neu erzeugen
+- **Rechtstexte doppelt (Firma + Shop, GF 04.11.2026):** `versand-zahlung.html`, `impressum.html`, `datenschutz.html`, `widerruf.html`, `barrierefreiheit.html` gibt es im Hauptordner (04) und in `shop/` (06). Ändert sich ein Rechtstext, **immer beide Fassungen** anpassen. Shop-Datenschutz = Grundfassung 04 ohne Nr. 2/3 + Ergänzung `06_Shop/Rechtstexte.md` Abschnitt 6
+- Shop-Ziele für 04: „Zum Shop“ → `shop/index.html` · „Zum Produkt“ 01 → `shop/campingstuhl-kompakt.html` · 02 → `shop/campingstuhl-komfort.html`
+- Formulare im Shop: jedes Feld mit `<label>`, Pflichtfelder „(Pflichtfeld)“, Fehler direkt am Feld (`aria-invalid` + `aria-describedby`, Text „Fehler: … z. B. …“), Fokus auf erstes fehlerhaftes Feld
+- `.env` (GF 04.11.2026, Variante 2): nur in `06_Shop/Vorschau_Shop/`; `Vorschau_Shop` nie zippen, teilen oder hochladen; Kopien/Vorschauen nie mit `.env`. Datenschutz Shop ohne Website-Nr. 3 (GF 04.11.2026)
