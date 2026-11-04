@@ -74,6 +74,7 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder
 - Jede Änderung prüfen: axe-core (WCAG 2.2 A/AA) PC + Handy, Tastatur, 320 px, 200 % Text; Ergebnis in Punkt 6 der Erklärung aktuell halten (über 01)
 
 ## Arbeitsweise
+- Eine Vorschau: `06_Shop/Vorschau_Shop/` – nach jedem Hochladen in main aktualisieren (ohne .env, node_modules, package-lock.json). Vorschau_Shop nie zippen, teilen oder hochladen; ZIP der Website nur direkt aus dem Repo (GF 04.11.2026)
 - Handy: Kopfbereich in der Reihenfolge Überschrift + Produktname → Bild (4:3) → Text, Fakten, Preis, Knopf
 - Erst planen, dann bauen; eine Seite/Funktion nach der anderen; nach jedem Schritt im Browser testen (PC + Handy 390 px)
 - Keine Passwörter, API-Schlüssel, echten Kunden- oder Bankdaten im Code
