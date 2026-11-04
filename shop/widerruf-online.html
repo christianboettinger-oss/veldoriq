@@ -44,25 +44,37 @@
 
     <form class="widerruf-form js-widerruf" novalidate>
       <p>Hier kannst du deinen Vertrag während der Widerrufsfrist online widerrufen. Gründe musst du nicht angeben. Einzelheiten stehen in der <a href="widerruf.html">Widerrufsbelehrung</a>.</p>
-      <label class="feld">Dein Name
-        <input name="name" type="text" autocomplete="name" required maxlength="100">
-      </label>
-      <label class="feld">Bestellnummer
-        <input name="bestellnummer" type="text" required maxlength="20" placeholder="z. B. VQ-20261103-CAC4" pattern="VQ-\d{8}-[0-9A-F]{4}">
-        <span class="feld__hilfe">Steht auf der Bestellbestätigung und der Danke-Seite.</span>
-      </label>
-      <label class="feld">Was widerrufst du?
-        <select name="umfang">
+      <p class="feld__hilfe">Felder mit „(Pflichtfeld)“ musst du ausfüllen.</p>
+      <div class="feld">
+        <label for="w-name">Dein Name <span class="pflicht">(Pflichtfeld)</span></label>
+        <input id="w-name" name="name" type="text" autocomplete="name" required aria-required="true" maxlength="100" aria-describedby="w-name-fehler">
+        <span class="feld__fehler" id="w-name-fehler" hidden></span>
+      </div>
+      <div class="feld">
+        <label for="w-nr">Bestellnummer <span class="pflicht">(Pflichtfeld)</span></label>
+        <input id="w-nr" name="bestellnummer" type="text" required aria-required="true" maxlength="20" aria-describedby="w-nr-hilfe w-nr-fehler">
+        <span class="feld__hilfe" id="w-nr-hilfe">Format VQ-JJJJMMTT-XXXX, z. B. VQ-20261103-CAC4. Sie steht auf der Bestellbestätigung und der Danke-Seite.</span>
+        <span class="feld__fehler" id="w-nr-fehler" hidden></span>
+      </div>
+      <div class="feld">
+        <label for="w-umfang">Was widerrufst du?</label>
+        <select id="w-umfang" name="umfang">
           <option value="ganz">die ganze Bestellung</option>
           <option value="teil">nur einzelne Artikel</option>
         </select>
-      </label>
-      <label class="feld js-artikel" hidden>Welche Artikel?
-        <input name="artikel" type="text" maxlength="200" placeholder="z. B. 1 × Campingstuhl Kompakt">
-      </label>
-      <label class="feld">E-Mail-Adresse für die Eingangsbestätigung
-        <input name="email" type="email" autocomplete="email" required maxlength="120">
-      </label>
+      </div>
+      <div class="feld js-artikel" hidden>
+        <label for="w-artikel">Welche Artikel? <span class="pflicht">(Pflichtfeld)</span></label>
+        <input id="w-artikel" name="artikel" type="text" maxlength="200" aria-describedby="w-artikel-hilfe w-artikel-fehler">
+        <span class="feld__hilfe" id="w-artikel-hilfe">Z. B. 1 × Campingstuhl Kompakt</span>
+        <span class="feld__fehler" id="w-artikel-fehler" hidden></span>
+      </div>
+      <div class="feld">
+        <label for="w-email">E-Mail-Adresse für die Eingangsbestätigung <span class="pflicht">(Pflichtfeld)</span></label>
+        <input id="w-email" name="email" type="email" autocomplete="email" required aria-required="true" maxlength="120" aria-describedby="w-email-hilfe w-email-fehler">
+        <span class="feld__hilfe" id="w-email-hilfe">Z. B. name@beispiel.de</span>
+        <span class="feld__fehler" id="w-email-fehler" hidden></span>
+      </div>
       <p class="kauf__meldung js-fehler" role="alert" hidden></p>
       <button class="knopf" type="submit">Widerruf bestätigen</button>
     </form>
@@ -102,6 +114,7 @@
       <li><a href="widerruf.html">Widerrufsbelehrung</a></li>
       <li><a href="impressum.html">Impressum</a></li>
       <li><a href="datenschutz.html">Datenschutz</a></li>
+      <li><a href="barrierefreiheit.html">Barrierefreiheit</a></li>
     </ul>
     <p class="fuss__widerruf"><a class="widerruf-link" href="widerruf-online.html">Vertrag widerrufen</a></p>
     <p class="fuss__hinweis">Schulungsprojekt „Virtuelles Unternehmen“: Die VELDORIQ Projektbedarf GmbH ist ein fiktives Unternehmen. Es findet kein Verkauf statt. Zahlungen laufen nur im Stripe-Testmodus.</p>

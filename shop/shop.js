@@ -231,27 +231,56 @@
       const letzte = sessionStorage.getItem("veldoriq-letzte-bestellung");
       if (letzte && !form.elements.bestellnummer.value) form.elements.bestellnummer.value = letzte;
     } catch (_) {}
+    // Prüfregeln (gleich wie server.js); Meldung sagt, was falsch ist und wie es richtig geht
+    const REGELN = {
+      name: (v) => v.trim() ? "" : "Bitte gib deinen Namen ein, z. B. Erika Muster.",
+      bestellnummer: (v) => /^VQ-\d{8}-[0-9A-F]{4}$/i.test(v.trim()) ? "" : "Die Bestellnummer hat das Format VQ-JJJJMMTT-XXXX, z. B. VQ-20261103-CAC4. Bitte prüfe deine Eingabe.",
+      artikel: (v) => (umfang.value !== "teil" || v.trim()) ? "" : "Bitte nenne die Artikel, die du widerrufst, z. B. 1 × Campingstuhl Kompakt.",
+      email: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) ? "" : "Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de.",
+    };
+    const fehlerSetzen = (name, text) => {
+      const feld = form.elements[name], hinweis = document.getElementById(feld.id + "-fehler");
+      if (text) { feld.setAttribute("aria-invalid", "true"); hinweis.textContent = "Fehler: " + text; hinweis.hidden = false; }
+      else { feld.removeAttribute("aria-invalid"); hinweis.textContent = ""; hinweis.hidden = true; }
+    };
+    const pruefen = () => {
+      let erstes = null;
+      for (const [name, regel] of Object.entries(REGELN)) {
+        const text = regel(form.elements[name].value);
+        fehlerSetzen(name, text);
+        if (text && !erstes) erstes = form.elements[name];
+      }
+      return erstes;
+    };
+    form.noValidate = true;
     form.addEventListener("submit", async (ev) => {
       ev.preventDefault();
       const fehler = $(".js-fehler"), knopf = form.querySelector("button[type=submit]");
-      fehler.hidden = true; knopf.disabled = true;
+      fehler.hidden = true;
+      const erstes = pruefen();
+      if (erstes) { erstes.focus(); return; }
+      knopf.setAttribute("aria-disabled", "true");
       const daten = Object.fromEntries(new FormData(form).entries());
       try {
         const r = await fetch("/api/widerruf", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(daten) });
         const d = await r.json();
-        if (!r.ok) throw new Error(d.fehler || "Unbekannter Fehler");
+        if (!r.ok) {
+          if (d.feld && form.elements[d.feld]) { fehlerSetzen(d.feld, d.fehler); form.elements[d.feld].focus(); knopf.removeAttribute("aria-disabled"); return; }
+          throw new Error(d.fehler || "Unbekannter Fehler");
+        }
         $(".js-zeit").textContent = d.zeit;
         $(".js-b-name").textContent = d.name;
         $(".js-b-nr").textContent = d.bestellnummer;
         $(".js-b-umfang").textContent = d.umfang === "ganz" ? "ganze Bestellung" : d.artikel;
         $(".js-b-email").textContent = d.email;
         $(".js-b-text").textContent = d.erklaerung;
-        form.hidden = true; $(".js-bestaetigung").hidden = false;
-        $(".js-bestaetigung").scrollIntoView({ behavior: "smooth", block: "start" });
+        form.hidden = true;
+        const best = $(".js-bestaetigung"); best.hidden = false;
+        const ueberschrift = best.querySelector("h2"); ueberschrift.tabIndex = -1; ueberschrift.focus();
       } catch (e) {
-        if (e instanceof TypeError) { serverHinweis(); fehler.textContent = "Der Shop-Server ist nicht erreichbar."; }
-        else fehler.textContent = e.message;
-        fehler.hidden = false; knopf.disabled = false;
+        if (e instanceof TypeError) { serverHinweis(); fehler.textContent = "Fehler: Der Shop-Server ist nicht erreichbar. Bitte starte ihn mit npm start und versuch es noch einmal."; }
+        else fehler.textContent = "Fehler: " + e.message;
+        fehler.hidden = false; knopf.removeAttribute("aria-disabled"); knopf.focus();
       }
     });
   }

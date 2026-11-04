@@ -154,10 +154,10 @@ async function widerruf(req, res) {
   const t = (v, max) => String(v || "").trim().slice(0, max);
   const name = t(d.name, 100), nr = t(d.bestellnummer, 20).toUpperCase(), email = t(d.email, 120);
   const umfang = d.umfang === "teil" ? "teil" : "ganz", artikel = t(d.artikel, 200);
-  if (!name) return json(res, 400, { fehler: "Bitte gib deinen Namen an." });
-  if (!/^VQ-\d{8}-[0-9A-F]{4}$/.test(nr)) return json(res, 400, { fehler: "Bitte gib deine Bestellnummer im Format VQ-JJJJMMTT-XXXX an." });
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(res, 400, { fehler: "Bitte gib eine gültige E-Mail-Adresse an." });
-  if (umfang === "teil" && !artikel) return json(res, 400, { fehler: "Bitte nenne die Artikel, die du widerrufst." });
+  if (!name) return json(res, 400, { feld: "name", fehler: "Bitte gib deinen Namen ein, z. B. Erika Muster." });
+  if (!/^VQ-\d{8}-[0-9A-F]{4}$/.test(nr)) return json(res, 400, { feld: "bestellnummer", fehler: "Die Bestellnummer hat das Format VQ-JJJJMMTT-XXXX, z. B. VQ-20261103-CAC4. Bitte prüfe deine Eingabe." });
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json(res, 400, { feld: "email", fehler: "Bitte gib eine gültige E-Mail-Adresse ein, z. B. name@beispiel.de." });
+  if (umfang === "teil" && !artikel) return json(res, 400, { feld: "artikel", fehler: "Bitte nenne die Artikel, die du widerrufst, z. B. 1 × Campingstuhl Kompakt." });
   const eingang = new Date();
   const zeit = eingang.toLocaleString("de-DE", { timeZone: "Europe/Berlin", dateStyle: "long", timeStyle: "medium" }) + " Uhr";
   const erklaerung = `Hiermit widerrufe ich, ${name}, den Vertrag über ${umfang === "ganz" ? "die gesamte Bestellung" : "folgende Artikel: " + artikel} (Bestellnummer ${nr}).`;

@@ -199,3 +199,13 @@ a.posten__name:hover { color: var(--seeblau); text-decoration: underline; }
 @media (max-width: 860px) { #inhalt .werte__raster { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 400px) { #inhalt .wert { padding: 18px 16px; } }
 .feld { grid-template-columns: minmax(0, 1fr); }
+
+/* ---------- Formular-Barrierefreiheit (Schritt 4.2, Teil 2) ---------- */
+.feld { font-weight: 400; }
+.feld > label { font-weight: 600; }
+.pflicht { font-weight: 400; }
+.feld__fehler { display: block; font-weight: 600; color: var(--anthrazit); border-left: 4px solid var(--anthrazit); padding: 4px 0 4px 10px; background: var(--holz); border-radius: 0 6px 6px 0; }
+.feld__fehler[hidden] { display: none; }
+.feld input[aria-invalid="true"] { border: 2px solid var(--anthrazit); }
+.widerruf-form .knopf[aria-disabled="true"] { opacity: .7; cursor: wait; }
+.menge__feld--klein input { width: 44px; min-height: 44px; }
