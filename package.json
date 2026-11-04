@@ -6,9 +6,12 @@
   "main": "server.js",
   "scripts": {
     "start": "node --env-file=.env server.js",
-    "test": "node shop/rechnung.test.js"
+    "test": "node shop/rechnung.test.js",
+    "aufraeumen": "node -e \"require('fs').rmSync('widerrufe.jsonl',{force:true});console.log('widerrufe.jsonl gelöscht (Testdaten)')\""
   },
-  "engines": { "node": ">=20.6" },
+  "engines": {
+    "node": ">=20.6"
+  },
   "dependencies": {
     "stripe": "23.1.0"
   }

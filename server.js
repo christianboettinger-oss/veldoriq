@@ -32,6 +32,27 @@ if (!schluessel || schluessel.includes("HIER_EINTRAGEN")) {
   stripe = new Stripe(schluessel);
 }
 
+// ---------- Sicherheits-Header (01, 04.11.2026) – für alle Antworten ----------
+// Nur eigene Dateien; die Zahlung läuft per Weiterleitung auf checkout.stripe.com (keine Stripe-Skripte im Shop).
+const SICHERHEIT = {
+  "Content-Security-Policy": [
+    "default-src 'self'",
+    "script-src 'self'",
+    "style-src 'self'",
+    "img-src 'self' data:",
+    "font-src 'self'",
+    "connect-src 'self'",
+    "form-action 'self' https://checkout.stripe.com",
+    "frame-ancestors 'none'",
+    "base-uri 'self'",
+    "object-src 'none'",
+  ].join("; "),
+  "X-Content-Type-Options": "nosniff",
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Frame-Options": "DENY",
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+};
+
 // ---------- Hilfen ----------
 const TYPEN = {
   ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8",
@@ -169,6 +190,7 @@ async function widerruf(req, res) {
 
 // ---------- Server ----------
 http.createServer((req, res) => {
+  for (const [name, wert] of Object.entries(SICHERHEIT)) res.setHeader(name, wert);
   const url = new URL(req.url, BASIS);
   if (req.method === "POST" && url.pathname === "/api/checkout") return checkout(req, res);
   if (req.method === "POST" && url.pathname === "/api/widerruf") return widerruf(req, res);
