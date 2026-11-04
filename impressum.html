@@ -13,11 +13,22 @@
 <body>
 
 <header class="kopf">
-  <div class="wrap">
-    <a class="kopf__logo" href="index.html" aria-label="VELDORIQ – Campingstuhl Kompakt">
+  <div class="wrap kopf__wrap">
+    <a class="kopf__logo" href="index.html" aria-label="VELDORIQ – Startseite">
       <img src="assets/logo/Logo_VELDORIQ.svg" alt="VELDORIQ" width="168" height="31">
     </a>
-    <span class="kopf__hinweis">Outdoor &amp; DIY</span>
+    <button class="menue-knopf" type="button" aria-expanded="false" aria-controls="hauptmenue">Menü</button>
+    <nav class="hauptnav" id="hauptmenue" aria-label="Hauptmenü">
+      <ul>
+        <li><a href="index.html">Start</a></li>
+        <li><a href="ueber-uns.html">Über uns</a></li>
+        <li><a href="sortiment.html">Sortiment</a></li>
+        <li><a href="diy-projekte.html">DIY-Projekte</a></li>
+        <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+        <li><a href="kontakt.html">Kontakt</a></li>
+      </ul>
+      <a class="knopf knopf--zweit knopf--klein js-shop-link" href="#">Zum Shop</a>
+    </nav>
   </div>
 </header>
 <main class="textseite">
@@ -44,7 +55,7 @@
 
     <h2>Verbraucherstreitbeilegung</h2>
     <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
-    <p class="zurueck"><a href="index.html">← Campingstuhl Kompakt</a> · <a href="campingstuhl-komfort.html">Campingstuhl Komfort</a></p>
+    <p class="zurueck"><a href="campingstuhl-kompakt.html">← Campingstuhl Kompakt</a> · <a href="campingstuhl-komfort.html">Campingstuhl Komfort</a></p>
   </div>
 </main>
 
@@ -52,14 +63,24 @@
   <div class="wrap">
     <img class="fuss__logo" src="assets/logo/Logo_VELDORIQ_dunkel.svg" alt="VELDORIQ" width="150" height="28">
     <ul class="fuss__links">
-      <li><a href="index.html">Campingstuhl Kompakt</a></li>
+      <li><a href="index.html">Start</a></li>
+      <li><a href="ueber-uns.html">Über uns</a></li>
+      <li><a href="sortiment.html">Sortiment</a></li>
+      <li><a href="diy-projekte.html">DIY-Projekte</a></li>
+      <li><a href="fuer-unternehmen.html">Für Unternehmen</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <ul class="fuss__links">
+      <li><a href="campingstuhl-kompakt.html">Campingstuhl Kompakt</a></li>
       <li><a href="campingstuhl-komfort.html">Campingstuhl Komfort</a></li>
       <li><a href="versand-zahlung.html">Versand &amp; Zahlung</a></li>
+      <li><a href="widerruf.html">Widerrufsbelehrung</a></li>
       <li><a href="impressum.html">Impressum</a></li>
       <li><a href="datenschutz.html">Datenschutz</a></li>
     </ul>
     <p class="fuss__hinweis">Schulungsprojekt „Virtuelles Unternehmen“: Die VELDORIQ Projektbedarf GmbH ist ein fiktives Unternehmen. Es findet kein Verkauf statt.</p>
   </div>
 </footer>
+<script src="assets/seite.js"></script>
 </body>
 </html>
