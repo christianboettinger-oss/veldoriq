@@ -25,6 +25,14 @@
       const offen = nav.classList.toggle("offen");
       menueKnopf.setAttribute("aria-expanded", String(offen));
     });
+    // Esc schließt das Menü und setzt den Fokus zurück auf den Menü-Knopf
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && nav.classList.contains("offen")) {
+        nav.classList.remove("offen");
+        menueKnopf.setAttribute("aria-expanded", "false");
+        menueKnopf.focus();
+      }
+    });
   }
 
   // Galerie: Ansicht wechseln
