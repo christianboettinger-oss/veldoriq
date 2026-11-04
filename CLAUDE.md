@@ -55,6 +55,7 @@ versand-zahlung.html        Versand & Zahlung (06_Shop/Rechtstexte.md, Abschnitt
 widerruf.html               Widerrufsbelehrung + Muster-Formular (06_Shop/Rechtstexte.md, Abschnitte 2 + 3, Sie-Form)
 impressum.html              Impressum (Rechtstexte.md, fiktive Firmendaten)
 datenschutz.html            Datenschutz (Rechtstexte.md)
+barrierefreiheit.html       Erklärung zur Barrierefreiheit (Rechtstexte.md, 1:1; GF 04.11.2026)
 assets/style.css    alle Styles, Farben als CSS-Variablen
 assets/seite.js     Menü Handy, Knopf „Zum Shop“ (SHOP_URL), Galerie, Knopf „Zum Produkt“, Kaufleiste Handy
 assets/fonts/       woff2 + Lizenzen
@@ -67,6 +68,10 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder
 - Beide Produktseiten haben denselben Aufbau (Kopfbereich, Vorteile + Knopf, Galerie, In der Praxis, Maße & Daten, Unterwegs & Lieferumfang, Alternative im Sortiment, Werte, Abschluss, Kaufleiste Handy); Änderungen immer an beiden Seiten
 - Knopf „Zum Produkt“: Ziel im `<body data-produkt-url="">` der jeweiligen Seite (leer, bis 06 die Produkt-URLs liefert)
 - Schulungsprojekt wird nie veröffentlicht: GitHub Pages aus, Repo privat, `noindex` bleibt (GF 02.11.2026)
+
+## Barrierefreiheit (GF 04.11.2026: umsetzen trotz Ausnahme für Kleinstunternehmen)
+- Ziel WCAG 2.2 AA: Sprunglink „Zum Inhalt springen“, logische Überschriften, Alt-Texte, Tastaturbedienung mit sichtbarem Fokus, Kontrast ≥ 4,5 : 1, Schrift ≥ 16 px, kein seitliches Scrollen bei 320 px und 200 % Text, Klickflächen ≥ 44 px
+- Jede Änderung prüfen: axe-core (WCAG 2.2 A/AA) PC + Handy, Tastatur, 320 px, 200 % Text; Ergebnis in Punkt 6 der Erklärung aktuell halten (über 01)
 
 ## Arbeitsweise
 - Handy: Kopfbereich in der Reihenfolge Überschrift + Produktname → Bild (4:3) → Text, Fakten, Preis, Knopf
