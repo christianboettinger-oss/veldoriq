@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="shop.css">
 </head>
 <body>
+<a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
 
 <header class="kopf">
   <div class="wrap kopf__wrap">
@@ -35,7 +36,7 @@
   </div>
 </header>
 
-<main class="textseite shopseite" data-seite="warenkorb">
+<main id="inhalt" tabindex="-1" class="textseite shopseite" data-seite="warenkorb">
   <div class="wrap breit">
     <h1>Dein Warenkorb</h1>
     <p class="js-hinweis-server hinweis-server" hidden>Der Warenkorb braucht den lokalen Shop-Server. Bitte starte ihn mit <code>npm start</code> und öffne <code>http://localhost:4242/shop/</code>.</p>
@@ -49,6 +50,7 @@
       <ul class="korb__liste js-liste" aria-label="Artikel im Warenkorb"></ul>
 
       <aside class="summe" aria-label="Summe">
+        <p class="unsichtbar js-ansage" role="status" aria-live="polite"></p>
         <p class="summe__frei js-frei"></p>
         <dl class="summe__tabelle">
           <dt>Zwischensumme</dt><dd class="js-zwischensumme"></dd>

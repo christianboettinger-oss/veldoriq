@@ -88,6 +88,12 @@
     const h = $(".js-hinweis-server"); if (h) h.hidden = false;
   }
 
+  // Ansage für Screenreader nach Änderungen im Warenkorb
+  function ansage(r, text) {
+    const el = $(".js-ansage"); if (!el) return;
+    el.textContent = r ? `${text} Gesamtsumme ${euro(r.gesamt_cent)}, Versand ${r.versand_cent === 0 ? "kostenfrei" : euro(r.versand_cent)}.` : `${text} Dein Warenkorb ist leer.`;
+  }
+
   // ---------- Positionen zeichnen (Warenkorb / Kasse) ----------
   function zeichnen(kat, bearbeitbar) {
     const korb = lesen().filter((p) => kat.artikel[p.sku]);
@@ -100,7 +106,7 @@
     r.positionen.forEach((p) => {
       const a = kat.artikel[p.sku];
       const li = document.createElement("li");
-      li.className = "posten";
+      li.className = "posten"; li.dataset.sku = p.sku;
       li.innerHTML = `
         <a class="posten__bild" href="${a.url}" tabindex="-1" aria-hidden="true"><img src="${a.bild}" width="96" height="96" alt=""></a>
         <div class="posten__text">
@@ -124,12 +130,19 @@
           const k = lesen();
           const e = k.find((x) => x.sku === p.sku);
           if (e) e.menge = Math.min(kat.max_menge, Math.max(1, n));
-          schreiben(k); zeichnen(kat, true);
+          schreiben(k); ansage(zeichnen(kat, true), `${p.name}: Menge ${Math.min(kat.max_menge, Math.max(1, n))}.`);
+          // Fokus nach dem Neuzeichnen auf dasselbe Bedienelement zurücksetzen (Tastatur, WCAG 2.4.3)
+          const ziel = document.querySelector(`.posten[data-sku="${p.sku}"] ${quelle}`);
+          if (ziel) ziel.focus();
         };
-        mengeZelle.querySelectorAll(".menge__knopf").forEach((b) => b.addEventListener("click", () => setzen(p.menge + Number(b.dataset.schritt))));
-        feld.addEventListener("change", () => setzen(Math.round(Number(feld.value)) || 1));
+        let quelle = "input";
+        mengeZelle.querySelectorAll(".menge__knopf").forEach((b) => b.addEventListener("click", () => {
+          quelle = `.menge__knopf[data-schritt="${b.dataset.schritt}"]`; setzen(p.menge + Number(b.dataset.schritt));
+        }));
+        feld.addEventListener("change", () => { quelle = "input"; setzen(Math.round(Number(feld.value)) || 1); });
         mengeZelle.querySelector(".posten__entfernen").addEventListener("click", () => {
-          schreiben(lesen().filter((x) => x.sku !== p.sku)); zeichnen(kat, true);
+          schreiben(lesen().filter((x) => x.sku !== p.sku)); ansage(zeichnen(kat, true), `${p.name} entfernt.`);
+          const naechster = document.querySelector(".posten__entfernen, .js-leer a"); if (naechster) naechster.focus();
         });
       } else {
         mengeZelle.textContent = `${p.menge} ×`;
