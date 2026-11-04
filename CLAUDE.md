@@ -73,3 +73,9 @@ assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder
 - Erst planen, dann bauen; eine Seite/Funktion nach der anderen; nach jedem Schritt im Browser testen (PC + Handy 390 px)
 - Keine Passwörter, API-Schlüssel, echten Kunden- oder Bankdaten im Code
 - Neue Seiten, Funktionen, Rechtstexte nur mit Freigabe der GF; Änderungen ins Protokoll `99_Protokolle/JJJJ-MM-TT.md`
+
+## Shop (06) – Ordner `shop/`
+- Lokal starten: `npm start` → `http://localhost:4242/shop/` (Stripe nur Testmodus, Schlüssel nur in `.env`, siehe README)
+- Kunde bleibt im Shop: Logo und erster Menüpunkt „Shop“ führen auf `shop/index.html`; Rechtsseiten im Shop als eigene Fassung mit Shop-Kopfzeile
+- **Rechtstexte doppelt (Firma + Shop, GF 04.11.2026):** `versand-zahlung.html`, `impressum.html`, `datenschutz.html`, `widerruf.html` gibt es im Hauptordner (04) und in `shop/` (06). Ändert sich ein Rechtstext, **immer beide Fassungen** anpassen. Shop-Datenschutz = Grundfassung 04 ohne Nr. 2/3 + Ergänzung `06_Shop/Rechtstexte.md` Abschnitt 6
+- Shop-Ziele für 04: „Zum Shop“ → `shop/index.html` · „Zum Produkt“ 01 → `shop/campingstuhl-kompakt.html` · 02 → `shop/campingstuhl-komfort.html`
