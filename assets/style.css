@@ -316,3 +316,21 @@ h3 + .liste-einfach { margin-top: 0; }
 .hinweisbox { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); padding: 24px 28px; }
 .cta-zeile--mitte { justify-content: center; }
 .cta-zeile .textlink { white-space: nowrap; }
+
+/* ======================= Barrierefreiheit (Prüfung 04.11.2026) ======================= */
+.sprunglink {
+  position: absolute; left: 16px; top: -100px; z-index: 50;
+  background: var(--waldgruen); color: var(--leinen); font-weight: 600;
+  padding: 10px 16px; border-radius: 8px; text-decoration: none;
+}
+.sprunglink:focus { top: 12px; outline: 3px solid var(--seeblau); outline-offset: 2px; }
+main:focus { outline: none; }
+summary:focus-visible { outline: 3px solid var(--seeblau); outline-offset: 3px; }
+h1, h2, h3, .hero__claim { overflow-wrap: break-word; hyphens: auto; }
+.textseite a, .daten td { overflow-wrap: anywhere; }
+.karten { grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); }
+.karten--zwei { grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); }
+.karten--folgt { grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr)); }
+.karten--eng { grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); }
+@media (max-width: 860px) { html { scroll-padding-bottom: 150px; } }
+.hero__raster > *, .zweispaltig > * { min-width: 0; }

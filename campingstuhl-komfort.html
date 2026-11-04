@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body data-bilder="assets/bilder/komfort/" data-produkt-url="">
+<a class="sprunglink" href="#inhalt">Zum Inhalt springen</a>
 
 <header class="kopf">
   <div class="wrap kopf__wrap">
@@ -35,14 +36,14 @@
   </div>
 </header>
 
-<main>
+<main id="inhalt" tabindex="-1">
 
   <!-- 1 Kopfbereich -->
   <section class="hero" aria-labelledby="titel">
     <div class="wrap hero__raster">
       <div class="hero__kopf">
         <p class="kicker">Dein Projekt. Draußen gemacht.</p>
-        <p class="hero__claim" aria-hidden="true">Dein Wochenende am See.</p>
+        <p class="hero__claim">Dein Wochenende am See.</p>
         <h1 id="titel" class="hero__produkt">VELDORIQ Campingstuhl Komfort – gepolstert, Lehne verstellbar</h1>
       </div>
       <div class="hero__bild">
@@ -280,11 +281,11 @@
 </main>
 
 <!-- Fester Knopf am Handy: nur sichtbar, wenn kein anderer Knopf im Bild ist (max. 1 Rost-Knopf je Ansicht) -->
-<div class="kaufleiste" id="kaufleiste" hidden>
+<aside class="kaufleiste" id="kaufleiste" aria-label="Preis und Knopf zum Produkt" hidden>
   <strong class="kaufleiste__preis">37,97 €</strong>
   <a class="knopf js-produkt-link" href="#">Zum Produkt <span class="knopf__pfeil" aria-hidden="true">→</span></a>
   <span class="kaufleiste__info">inkl. MwSt., zzgl. <a href="versand-zahlung.html">Versandkosten</a> · <span class="nowrap">Lieferzeit: 1–3 Werktage</span></span>
-</div>
+</aside>
 
 <footer class="fuss">
   <div class="wrap">
