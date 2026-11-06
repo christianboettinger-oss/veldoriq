@@ -46,7 +46,9 @@ Quelle der Regeln: Projektordner `03_Marke/Styleguide.md`, `03_Marke/Tonalitaet.
 index.html                  Firmenwebsite: Start
 ueber-uns.html              Firmenwebsite: Über uns
 sortiment.html              Firmenwebsite: Sortiment
-diy-projekte.html           Firmenwebsite: DIY-Projekte (Ratgeber folgen)
+diy-projekte.html           Firmenwebsite: DIY-Projekte (7 Karten; Ratgeber 01 + 07 verlinkt, übrige folgen)
+grillstelle-bauen.html      Ratgeber 01 Eigene Grillstelle bauen (07b_Content/Ratgeber/01_Grillstelle.md, 1:1)
+campingstuhl-worauf-achten.html  Ratgeber 07 Der passende Campingstuhl (07b_Content/Ratgeber/07_Campingstuhl.md, 1:1)
 fuer-unternehmen.html       Firmenwebsite: Für Unternehmen (Sie-Form, Angebot per E-Mail)
 kontakt.html                Firmenwebsite: Kontakt (kein Formular)
 campingstuhl-kompakt.html   Landingpage 01 Campingstuhl Kompakt
@@ -60,7 +62,7 @@ assets/style.css    alle Styles, Farben als CSS-Variablen
 assets/seite.js     Menü Handy, Knopf „Zum Shop“ (SHOP_URL), Galerie, Knopf „Zum Produkt“, Kaufleiste Handy
 assets/fonts/       woff2 + Lizenzen
 assets/logo/        SVG-Logos
-assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder (firma/, F1–F5 aus „02 Produktbilder/F_Firmenwebsite/AI-Tag“)
+assets/bilder/      WebP-Bilder je Artikel (kompakt/, komfort/) und Firmenbilder (firma/, F1–F5 aus „02 Produktbilder/F_Firmenwebsite/AI-Tag“), Ratgeberbilder (ratgeber/, aus „02 Produktbilder/R_Ratgeber/AI-Tag“)
 ```
 - Reines HTML/CSS, wenig JavaScript, kein Build-Schritt, keine Frameworks
 - Texte Firmenwebsite 1:1 aus `04_Website_Landingpage/Texte_Firmenwebsite.md`; Seitenplan `Sitemap.md`

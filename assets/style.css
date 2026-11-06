@@ -334,3 +334,45 @@ h1, h2, h3, .hero__claim { overflow-wrap: break-word; hyphens: auto; }
 .karten--eng { grid-template-columns: repeat(auto-fill, minmax(min(180px, 100%), 1fr)); }
 @media (max-width: 860px) { html { scroll-padding-bottom: 150px; } }
 .hero__raster > *, .zweispaltig > * { min-width: 0; }
+
+/* ======================= Ratgeber (DIY-Projekte, GF 05./06.11.2026) ======================= */
+.ratgeber { padding: clamp(28px, 5vw, 56px) 0 clamp(40px, 6vw, 72px); }
+.ratgeber .wrap { max-width: 760px; }
+.ratgeber h2 { font-size: 1.45rem; margin-top: 1.8em; }
+.ratgeber h3 { font-size: 1.15rem; margin: 1.2em 0 .3em; }
+.ratgeber h3 + p { margin-top: 0; }
+.ratgeber a { overflow-wrap: anywhere; }
+.krumen ol { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-wrap: wrap; align-items: center; column-gap: 0; }
+.krumen li + li::before { content: "›"; padding: 0 8px; color: var(--anthrazit); }
+.krumen a { color: var(--seeblau); font-weight: 600; display: inline-block; padding: 10px 0; }
+.rg-bild { margin: 8px 0 28px; max-width: 480px; }
+.rg-bild--hoch { max-width: 440px; }
+.rg-bild img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+.rg-schritte { padding-left: 1.4em; }
+.rg-schritte li { margin-bottom: .9em; }
+.rg-schritte .rg-bild { margin: 16px 0 8px; }
+.rg-liste { padding-left: 1.2em; }
+.rg-liste li { margin-bottom: .4em; }
+.praxistipp { background: var(--holz); color: var(--anthrazit); border-radius: var(--radius); padding: 18px 22px; margin: 28px 0; }
+.praxistipp p { margin: 0; }
+.rg-tab-rahmen { margin: 8px 0 24px; }
+.rg-tab { width: 100%; border-collapse: collapse; background: var(--weiss); border-radius: var(--radius); overflow: hidden; }
+.rg-tab th, .rg-tab td { text-align: left; vertical-align: top; padding: 9px 12px; border-bottom: 1px solid var(--linie); font-size: 1rem; }
+.rg-tab thead th { background: var(--waldgruen); color: var(--leinen); font-weight: 600; }
+.rg-tab tbody th { font-weight: 600; }
+.rg-tab tbody tr:last-child > * { border-bottom: 0; }
+.rg-tab__label { display: none; }
+/* Handy: jede Zeile als eigener Block, kein seitliches Scrollen */
+@media (max-width: 640px) {
+  .rg-tab, .rg-tab tbody, .rg-tab tr, .rg-tab th, .rg-tab td { display: block; width: auto; }
+  .rg-tab thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .rg-tab { background: transparent; }
+  .rg-tab tbody tr { background: var(--weiss); border: 1px solid var(--linie); border-radius: var(--radius); margin-bottom: 10px; padding: 10px 14px; }
+  .rg-tab th, .rg-tab td { border: 0; padding: 2px 0; }
+  .rg-tab tbody th { font-family: var(--schrift-titel); color: var(--waldgruen); padding-bottom: 4px; }
+  .rg-tab__label { display: inline; font-weight: 600; }
+}
+/* Karten DIY-Projekte mit Foto: ganzes Bild, kein Zuschnitt (KI-Kennzeichnung bleibt sichtbar) */
+.karte__bild--foto img { aspect-ratio: auto; height: auto; object-fit: initial; border-radius: 8px; }
+.karten--diy { align-items: start; }
+.karte .karte__passt + .karte__link { margin-top: auto; padding-top: 12px; }
